@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+@theme {
+    /* Khai báo đầy đủ shade để Tailwind nhận */
+    --color-primary-50: #eef2ff;
+    --color-primary-100: #e0e7ff;
+    --color-primary-200: #c7d2fe;
+    --color-primary-300: #a5b4fc;
+    --color-primary-400: #818cf8;
+    --color-primary-500: #6366f1;
+    --color-primary-600: #4f46e5; /* chính */
+    --color-primary-700: #4338ca;
+    --color-primary-800: #3730a3;
+    --color-primary-900: #312e81;
+
+    /* Surface */
+    --color-background: #fdfcf9;
+    --color-fill-active: #efefef;
+
+    /* Stroke */
+    --color-stroke-default: #dadada;
+
+    /* Text */
+    --color-default: #000000;
+    --color-active: #191919;
+    --color-disabled: #828282;
+}
+
+#root {
+    margin: 0 auto;
+    background: #fdfcf9;
+    color: #000000;
+    /* font-family: "Raleway", sans-serif; */
+}
+
+/* global.css */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.AppWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@keyframes float-gentle {
+    0%,
+    100% {
+        transform: translateY(0px);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-8px);
+        opacity: 0.2;
+    }
+}
+
+@keyframes float-gentle-delayed {
+    0%,
+    100% {
+        transform: translateY(0px);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-6px);
+        opacity: 0.1;
+    }
+}
+
+@keyframes float-gentle-slow {
+    0%,
+    100% {
+        transform: translateY(0px);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateY(-4px);
+        opacity: 0.05;
+    }
+}
+
+.animate-float-gentle {
+    animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-float-gentle-delayed {
+    animation: float-gentle-delayed 8s ease-in-out infinite 2s;
+}
+
+.animate-float-gentle-slow {
+    animation: float-gentle-slow 10s ease-in-out infinite 4s;
+}
