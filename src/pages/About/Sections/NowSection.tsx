@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { CurrentActivity } from "../../types/about";
+import type { CurrentActivity } from "../../../types/about";
 
 interface NowSectionProps {
     currentWork: CurrentActivity[];

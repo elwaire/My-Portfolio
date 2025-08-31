@@ -1,5 +1,5 @@
 import { memo } from "react";
-import type { ProjectSection } from "../../types/project";
+import type { ProjectSection } from "../../../types/project";
 
 interface ContentSectionProps {
     section: ProjectSection;

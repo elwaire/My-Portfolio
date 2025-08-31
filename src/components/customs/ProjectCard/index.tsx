@@ -15,9 +15,9 @@ const cardVariants: Variants = {
 
 // Map style theo category
 const categoryStyles: Record<Project["category"], string> = {
-    uiux: "border-blue-200 bg-blue-50 hover:shadow-blue-200/60",
-    graphic: "border-pink-200 bg-pink-50 hover:shadow-pink-200/60",
-    art: "border-purple-200 bg-purple-50 hover:shadow-purple-200/60",
+    uiux: "border-blue-200 bg-white hover:shadow-blue-200/60",
+    graphic: "border-pink-200 bg-white hover:shadow-pink-200/60",
+    art: "border-purple-200 bg-white hover:shadow-purple-200/60",
 };
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
@@ -41,7 +41,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                 />
-                <span className="absolute top-4 uppercase right-4 text-xs py-2 px-4 rounded-full bg-black/50 text-white">
+                <span
+                    className={`absolute top-4 uppercase right-4 text-xs py-2 px-4 rounded-full bg-black/50 text-white`}
+                >
                     {project.category}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/70 to-transparent" />
@@ -51,7 +53,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 <Link to={`${PATHS.PROJECT}/${project.id}`}>
                     <h3 className="text-lg font-semibold hover:underline">{project.title}</h3>
                 </Link>
-                <p className="text-gray-600 text-sm">{project.description}</p>
+                <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
             </div>
         </motion.div>
     );

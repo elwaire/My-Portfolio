@@ -4,10 +4,10 @@ import { Navigate, useParams } from "react-router-dom";
 import PATHS from "../../constants/paths";
 import transitionPage from "../../hoc/TransitionPage";
 import { useProjectDetail } from "../../hooks/useProjectDetail";
-import ContentSection from "./ContentSection";
-import ProjectDetailSkeleton from "./ProjectDetailSkeleton";
-import ProjectHeader from "./ProjectHeader";
-import ProjectIntroduction from "./ProjectIntroduction";
+import ProjectDetailSkeleton from "./Components/ProjectDetailSkeleton";
+import ProjectHeader from "./Components/ProjectHeader";
+import ProjectIntroduction from "./Components/ProjectIntroduction";
+import ContentSection from "./Components/ContentSection";
 
 const DetailProjectPage: React.FC = () => {
     const { idProject } = useParams<{ idProject: string }>();

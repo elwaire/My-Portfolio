@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { AboutSection } from "../../types/about";
+import type { AboutSection } from "../../../types/about";
 
 interface AboutSidebarProps {
     sections: AboutSection[];

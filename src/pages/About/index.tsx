@@ -7,11 +7,11 @@ import {
     timeline,
 } from "../../constants/aboutData";
 import transitionPage from "../../hoc/TransitionPage";
-import AboutSidebar from "./AboutSiderBar";
-import AchievementsSection from "./AchievementsSection";
-import NowSection from "./NowSection";
-import ProfileSection from "./ProfileSection";
-import TimelineSection from "./TimelineSection";
+import AboutSidebar from "./Sections/AboutSiderBar";
+import AchievementsSection from "./Sections/AchievementsSection";
+import NowSection from "./Sections/NowSection";
+import ProfileSection from "./Sections/ProfileSection";
+import TimelineSection from "./Sections/TimelineSection";
 
 const AboutUsPage: React.FC = () => {
     return (

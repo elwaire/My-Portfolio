@@ -1,5 +1,5 @@
 import { memo } from "react";
-import type { ProjectHead } from "../../types/project";
+import type { ProjectHead } from "../../../types/project";
 
 const ProjectHeader: React.FC<{ head: ProjectHead }> = ({ head }) => (
     <header className="w-full py-20 max-w-6xl">

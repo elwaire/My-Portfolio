@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { TimelineItem } from "../../types/about";
+import type { TimelineItem } from "../../../types/about";
 
 interface TimelineSectionProps {
     timeline: TimelineItem[];

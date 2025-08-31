@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { Achievement } from "../../types/about";
+import type { Achievement } from "../../../types/about";
 
 interface AchievementsSectionProps {
     achievements: Achievement[];

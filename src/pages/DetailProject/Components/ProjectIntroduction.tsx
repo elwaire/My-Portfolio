@@ -1,4 +1,4 @@
-import type { ProjectIntroductionType } from "../../types/project";
+import type { ProjectIntroductionType } from "../../../types/project";
 
 interface ProjectIntroductionProps {
     introduction: ProjectIntroductionType;

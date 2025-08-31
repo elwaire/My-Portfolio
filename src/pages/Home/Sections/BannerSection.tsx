@@ -2,7 +2,7 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import Button from "../../../components/customs/Button";
 
-const Banner = memo(() => {
+const BannerSection = memo(() => {
     const dataImage = "https://i.pinimg.com/1200x/05/12/7b/05127bc276f1f4ca190e45c46e6463c9.jpg";
     // const dataImage = "";
 
@@ -48,4 +48,4 @@ const Banner = memo(() => {
     );
 });
 
-export default Banner;
+export default BannerSection;

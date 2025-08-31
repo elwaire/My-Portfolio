@@ -1,13 +1,13 @@
 import transitionPage from "../../hoc/TransitionPage";
-import Banner from "./Sections/Banner";
-import Certificate from "./Sections/Certificate";
-import Projects from "./Sections/Projects";
+import BannerSection from "./Sections/BannerSection";
+import Certificate from "./Sections/CertificateSection";
+import ProjectsSection from "./Sections/ProjectsSection";
 
 const HomePage: React.FC = () => {
     return (
         <div className="flex flex-col items-center justify-start">
-            <Banner />
-            <Projects />
+            <BannerSection />
+            <ProjectsSection />
             <Certificate />
         </div>
     );
