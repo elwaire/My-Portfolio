@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { Achievement } from "../../../types/about";
+import { memo } from "react";
 
 interface AchievementsSectionProps {
     achievements: Achievement[];
@@ -34,4 +35,4 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ achievements 
     </motion.section>
 );
 
-export default AchievementsSection;
+export default memo(AchievementsSection);

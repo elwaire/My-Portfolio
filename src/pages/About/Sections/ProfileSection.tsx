@@ -1,12 +1,6 @@
 import { motion } from "framer-motion";
-
-interface ProfileData {
-    name: string;
-    title: string;
-    image: string;
-    skills: string[];
-    bio: string[];
-}
+import { memo } from "react";
+import type { ProfileData } from "../../../types/about";
 
 interface ProfileSectionProps {
     data: ProfileData;
@@ -59,4 +53,4 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ data }) => (
     </motion.section>
 );
 
-export default ProfileSection;
+export default memo(ProfileSection);

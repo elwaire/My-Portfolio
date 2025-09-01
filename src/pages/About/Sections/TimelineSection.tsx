@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { TimelineItem } from "../../../types/about";
+import { memo } from "react";
 
 interface TimelineSectionProps {
     timeline: TimelineItem[];
@@ -42,4 +43,4 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ timeline }) => (
     </motion.section>
 );
 
-export default TimelineSection;
+export default memo(TimelineSection);

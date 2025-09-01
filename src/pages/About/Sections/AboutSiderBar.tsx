@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { AboutSection } from "../../../types/about";
+import { memo } from "react";
 
 interface AboutSidebarProps {
     sections: AboutSection[];
@@ -35,4 +36,4 @@ const AboutSidebar: React.FC<AboutSidebarProps> = ({ sections }) => (
     </aside>
 );
 
-export default AboutSidebar;
+export default memo(AboutSidebar);
