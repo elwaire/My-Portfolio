@@ -20,9 +20,7 @@ const CertificateSection = memo(() => {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-3xl font-bold">Certificates</h2>
-                    <p className="text-gray-600 mt-2">
-                        Những chứng chỉ đã đạt được trong quá trình học tập và làm việc
-                    </p>
+                    <p className="text-gray-600 mt-2">Certificates obtained during my studies and work experience.</p>
                 </motion.div>
 
                 {/* Mobile (stacked list) */}

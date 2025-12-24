@@ -9,6 +9,8 @@ import NotFound from "../pages/NotFound";
 import ProjectsPage from "../pages/Projects";
 import DetailProjectPage from "../pages/DetailProject";
 
+import BlogsPage from "../pages/Blogs";
+
 import MainLayout from "../layouts/MainLayout";
 import ChildLayout from "../layouts/ChidLayout";
 
@@ -23,6 +25,7 @@ export default function AppRoutes() {
                     <Route path={PATHS.HOME} element={<HomePage />} />
                     <Route path={PATHS.ABOUT_US} element={<AboutUsPage />} />
                     <Route path={PATHS.PROJECT} element={<ProjectsPage />} />
+                    <Route path={PATHS.BLOG} element={<BlogsPage />} />
                 </Route>
 
                 {/* Route không layout */}

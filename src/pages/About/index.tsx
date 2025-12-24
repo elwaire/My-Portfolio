@@ -1,8 +1,6 @@
 import { memo } from "react";
 import { aboutSections } from "../../constants/aboutData";
-import transitionPage from "../../hoc/TransitionPage";
 import { useAbout } from "../../hooks/useAbout";
-import log from "../../utils/log";
 import AboutSidebar from "./Sections/AboutSiderBar";
 import AchievementsSection from "./Sections/AchievementsSection";
 import NowSection from "./Sections/NowSection";
@@ -11,8 +9,6 @@ import TimelineSection from "./Sections/TimelineSection";
 
 const AboutUsPage: React.FC = () => {
     const { aboutData, loading } = useAbout();
-
-    log(aboutData);
 
     if (loading) {
         return (
@@ -49,4 +45,4 @@ const AboutUsPage: React.FC = () => {
     );
 };
 
-export default transitionPage(memo(AboutUsPage));
+export default memo(AboutUsPage);

@@ -1,4 +1,5 @@
 // types/project.ts
+
 export interface Project {
     id: string;
     title: string;
@@ -23,11 +24,28 @@ export interface ProjectHead {
     category: "uiux" | "graphic" | "art";
 }
 
+// Section types
+export type SectionType = "text" | "image" | "gallery" | "text-image";
+
+// Gallery image item
+export interface GalleryImage {
+    url: string;
+    alt?: string;
+    aspectRatio?: "2/1" | "6/5"; // 2400x1200 hoặc 2400x2000
+}
+
+// Project section với các loại content khác nhau
 export interface ProjectSection {
-    id: string;
-    title: string;
+    title?: string;
+    type: SectionType;
+    // For type: "text" | "text-image"
     text?: string;
-    images?: string[];
+    // For type: "image" | "text-image"
+    image?: string;
+    imageAlt?: string;
+    imageAspectRatio?: "2/1" | "6/5"; // 2400x1200 hoặc 2400x2000
+    // For type: "gallery"
+    images?: GalleryImage[];
 }
 
 export interface ProjectData {

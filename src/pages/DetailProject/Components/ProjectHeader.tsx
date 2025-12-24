@@ -8,11 +8,11 @@ const ProjectHeader: React.FC<{ head: ProjectHead }> = ({ head }) => (
             <p className="text-lg font-light text-neutral-600 mb-6 leading-relaxed">{head.description}</p>
         )}
         {head.thumbnail && (
-            <div className="w-full">
+            <div className="w-full aspect-[2/1]">
                 <img
                     src={head.thumbnail}
                     alt="Project thumbnail"
-                    className="rounded-2xl w-full shadow-md object-cover"
+                    className="rounded-2xl w-full h-full shadow-md object-cover"
                     loading="eager"
                 />
             </div>

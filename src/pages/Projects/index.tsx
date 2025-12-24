@@ -1,9 +1,8 @@
 // pages/ProjectsPage.tsx
-import React, { useState, useCallback, useMemo } from "react";
-import transitionPage from "../../hoc/TransitionPage";
+import React, { useCallback, useMemo, useState } from "react";
 import ProjectCard from "../../components/customs/ProjectCard";
-import { useProjects } from "../../hooks/useProjects";
 import SkeletonCard from "../../components/customs/SkeletonCard";
+import { useProjects } from "../../hooks/useProjects";
 
 type Category = "uiux" | "graphic" | "art";
 
@@ -132,4 +131,4 @@ const CategoryButton = React.memo<CategoryButtonProps>(({ category, isActive, on
 
 CategoryButton.displayName = "CategoryButton";
 
-export default transitionPage(ProjectsPage);
+export default ProjectsPage;

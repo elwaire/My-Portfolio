@@ -1,138 +1,87 @@
+import { memo } from "react";
+
 const Footer: React.FC = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
-        <footer className=" text-neutral-700 border-t border-neutral-200 mt-16">
-            <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-                {/* Logo */}
-                <div>
-                    <div className="text-2xl font-bold">NM</div>
-                </div>
-
-                {/* Hello */}
-                <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase mb-3">Hello</h4>
-                    <ul className="space-y-2 text-sm">
-                        <li>
-                            <a href="#about" className="hover:text-black transition">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#newsletter" className="hover:text-black transition">
-                                Newsletter
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" className="hover:text-black transition">
-                                Contact
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#faq" className="hover:text-black transition">
-                                FAQ
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Services */}
-                <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase mb-3">Services</h4>
-                    <ul className="space-y-2 text-sm">
-                        <li>
-                            <a href="#design" className="hover:text-black transition">
-                                Product Design
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#development" className="hover:text-black transition">
-                                Web Development
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#speaking" className="hover:text-black transition">
-                                Speaking
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Resources */}
-                <div>
-                    <h4 className="text-sm font-semibold text-neutral-500 uppercase mb-3">Resources</h4>
-                    <ul className="space-y-2 text-sm">
-                        <li>
-                            <a href="#kit" className="hover:text-black transition">
-                                The Creative Freelancer Kit
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#resume" className="hover:text-black transition">
-                                Resume Kit for UI/UX Designers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#roadmap" className="hover:text-black transition">
-                                UI/UX Design Learning Roadmap
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#wallpaper" className="hover:text-black transition">
-                                Glow Wallpaper Pack
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#all" className="hover:text-black transition">
-                                See all resources →
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <footer className="bg-gray-50 text-black border-t border-gray-200">
+            {/* CTA Section */}
+            <div className="container mx-auto px-6 py-20 text-center">
+                <p className="text-neutral-400 text-sm font-light uppercase tracking-widest mb-4">
+                    Got a project in mind?
+                </p>
+                <h2 className="text-3xl md:text-3xl font-semibold mb-8">Let's work together</h2>
+                <a
+                    href="mailto:elwairestudio@gmail.com"
+                    className="inline-flex items-center gap-2 text-md  font-light 
+                               text-black  transition-colors duration-300 underline hover:text-blue-600
+                          "
+                >
+                    elwairestudio@gmail.com
+                    <span className="text-lg">↗</span>
+                </a>
             </div>
 
-            {/* Bottom */}
-            <div className="border-t border-neutral-200 mt-8">
-                <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-sm text-neutral-500">
-                        © {new Date().getFullYear()} Ngoc Min | Built with Elwaire Studio
-                    </p>
-                    <div className="flex gap-4 text-neutral-500 text-lg">
+            {/* Divider */}
+            <div className="container mx-auto px-6">
+                <div className="border-t border-neutral-300" />
+            </div>
+
+            {/* Bottom Section */}
+            <div className="container mx-auto px-6 py-8">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                    {/* Left - Copyright */}
+                    <p className="text-neutral-500 text-sm">© {currentYear} Ngoc Min. All rights reserved.</p>
+
+                    {/* Center - Social Links */}
+                    <div className="flex items-center gap-6">
                         <a
-                            href="https://youtube.com"
+                            href="https://www.linkedin.com/in/kien-vo-ngoc-min-2b3597275/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-black transition"
+                            className="text-neutral-400 hover:text-blue-500 hover:underline transition-colors duration-300"
                         >
-                            YT
+                            LinkedIn
                         </a>
                         <a
-                            href="https://twitter.com"
+                            href="https://www.behance.net/nevwyn"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-black transition"
+                            className="text-neutral-400 hover:text-blue-500 hover:underline transition-colors duration-300"
                         >
-                            TW
+                            Behance
                         </a>
                         <a
-                            href="https://linkedin.com"
+                            href="https://dribbble.com/Nevwyn"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-black transition"
+                            className="text-neutral-400 hover:text-blue-500 hover:underline transition-colors duration-300"
                         >
-                            IN
+                            Dribbble
                         </a>
                         <a
-                            href="https://instagram.com"
+                            href="https://www.instagram.com/ktys4tt/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-black transition"
+                            className="text-neutral-400 hover:text-blue-500 hover:underline transition-colors duration-300"
                         >
-                            IG
+                            Instagram
                         </a>
                     </div>
+
+                    {/* Right - Back to top */}
+                    <button
+                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        className="text-neutral-500 hover:text-blue-500 text-sm transition-colors duration-300 
+                                   flex items-center gap-1"
+                    >
+                        Back to top
+                        <span>↑</span>
+                    </button>
                 </div>
             </div>
         </footer>
     );
 };
 
-export default Footer;
+export default memo(Footer);
