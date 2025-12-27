@@ -86,7 +86,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
         return (
             <motion.div
                 className={`w-full ${getAspectClass(aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
             >
                 <motion.img
@@ -95,7 +94,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                     className="w-full h-full object-cover cursor-zoom-in"
                     loading="lazy"
                     onClick={() => openLightbox(url, imageAlt)}
-                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
                 />
             </motion.div>
@@ -117,7 +115,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                             <motion.div
                                 key={imgIndex}
                                 className={`${getAspectClass(img.aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                                whileHover={{ scale: 1.02 }}
                                 transition={{ duration: 0.3 }}
                             >
                                 <motion.img
@@ -126,7 +123,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                                     className="w-full h-full object-cover cursor-zoom-in"
                                     loading="lazy"
                                     onClick={() => openLightbox(img.url, imageAlt)}
-                                    whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.4 }}
                                 />
                             </motion.div>
@@ -141,7 +137,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
             <div className="w-full space-y-4">
                 <motion.div
                     className={`${getAspectClass(images[0].aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                 >
                     <motion.img
@@ -150,7 +145,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                         className="w-full h-full object-cover cursor-zoom-in"
                         loading="lazy"
                         onClick={() => openLightbox(images[0].url, images[0].alt || `${section.title} 1`)}
-                        whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.4 }}
                     />
                 </motion.div>
@@ -165,7 +159,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                                     className={`${getAspectClass(
                                         img.aspectRatio,
                                     )} overflow-hidden rounded-xl shadow-md`}
-                                    whileHover={{ scale: 1.02 }}
                                     transition={{ duration: 0.3 }}
                                 >
                                     <motion.img
@@ -174,7 +167,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                                         className="w-full h-full object-cover cursor-zoom-in"
                                         loading="lazy"
                                         onClick={() => openLightbox(img.url, imageAlt)}
-                                        whileHover={{ scale: 1.05 }}
                                         transition={{ duration: 0.4 }}
                                     />
                                 </motion.div>

@@ -10,6 +10,7 @@ import ProjectsPage from "../pages/Projects";
 import DetailProjectPage from "../pages/DetailProject";
 
 import BlogsPage from "../pages/Blogs";
+import DetailBlogPage from "../pages/DetailBlog";
 
 import MainLayout from "../layouts/MainLayout";
 import ChildLayout from "../layouts/ChidLayout";
@@ -31,6 +32,7 @@ export default function AppRoutes() {
                 {/* Route không layout */}
                 <Route element={<ChildLayout />}>
                     <Route path={`${PATHS.PROJECT}/:idProject`} element={<DetailProjectPage />} />
+                    <Route path={`${PATHS.BLOG}/:idBlog`} element={<DetailBlogPage />} />
                 </Route>
 
                 {/* Route 404 */}

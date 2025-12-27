@@ -82,7 +82,7 @@ const ProjectsPage: React.FC = () => {
     return (
         <div className="flex justify-center items-center">
             <div className="min-h-screen px-6 py-16 max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-12">My Projects</h1>
+                <h1 className="text-4xl font-bold text-center mt-12 mb-12">My Projects</h1>
 
                 {/* Tabs */}
                 <div className="flex justify-center gap-4 mb-12">{categoryButtons}</div>
