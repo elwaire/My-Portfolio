@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Linkedin, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import NavLinks from "./Navlinks";
 import Logo from "./Logo";
+import NavLinks from "./Navlinks";
 
 NavLinks.displayName = "NavLinks";
 
