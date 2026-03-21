@@ -132,16 +132,25 @@ const BannerSection = memo(() => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.2 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                    <motion.a
-                        href={bannerSettings.buttonLink}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors shadow-lg inline-block text-center no-underline"
+                    {/* Contact Button */}
+                    <a
+                        href="#contact"
+                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white rounded-full text-sm font-medium transition-colors shadow-lg inline-block text-center no-underline hover:bg-gray-700"
                     >
-                        {bannerSettings.buttonLabel}
-                    </motion.a>
+                        Contact Me
+                    </a>
+
+                    {/* Download CV Button */}
+                    <a
+                        href="https://drive.google.com/drive/folders/1RUchOcrtVbB5r7DjFqqHt1f0puRd65xn?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 border border-gray-100 hover:border-transparent rounded-full text-sm font-medium hover:bg-gray-900 hover:text-white transition-colors shadow-lg inline-block text-center no-underline"
+                    >
+                        Download CV
+                    </a>
                 </motion.div>
             </div>
         </section>

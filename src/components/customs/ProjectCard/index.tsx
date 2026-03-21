@@ -33,7 +33,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             className={`flex flex-col rounded-2xl relative border overflow-hidden shadow-md cursor-pointer transition-all duration-300 ${styleClass}`}
         >
             {/* Wrapper cho ảnh */}
-            <div className="relative overflow-hidden">
+            <Link className="relative overflow-hidden" to={`${PATHS.PROJECT}/${project.id}`}>
                 <motion.img
                     src={project.image}
                     alt={project.title}
@@ -47,7 +47,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                     {project.category}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/70 to-transparent" />
-            </div>
+            </Link>
 
             <div className="flex flex-col gap-2 p-4">
                 <Link to={`${PATHS.PROJECT}/${project.id}`}>
