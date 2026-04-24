@@ -29,7 +29,7 @@
 
 #root {
     margin: 0 auto;
-    background: #fdfcf9;
+    background: linear-gradient(180deg, #f5f0e8 0%, #ede5d2 100%);
     color: #000000;
     /* font-family: "Raleway", sans-serif; */
 }
