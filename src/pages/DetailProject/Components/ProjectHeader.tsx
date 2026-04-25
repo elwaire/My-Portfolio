@@ -7,8 +7,18 @@ const ProjectHeader: React.FC<{ head: ProjectHead }> = ({ head }) => (
         {head.description && (
             <p className="text-lg font-light text-neutral-600 mb-6 leading-relaxed">{head.description}</p>
         )}
+        {head.projectLink && (
+            <a
+                href={head.projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline mb-6 underline cursor-pointer hover:text-blue-800"
+            >
+                View Project
+            </a>
+        )}
         {head.thumbnail && (
-            <div className="w-full aspect-[2/1]">
+            <div className="w-full aspect-[2/1] mt-6">
                 <img
                     src={head.thumbnail}
                     alt="Project thumbnail"

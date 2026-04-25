@@ -22,6 +22,7 @@ export interface ProjectHead {
     description: string;
     thumbnail: string;
     category: "uiux" | "graphic" | "art";
+    projectLink?: string;
 }
 
 // Section types
@@ -52,4 +53,5 @@ export interface ProjectData {
     head: ProjectHead;
     introduction: ProjectIntroductionType;
     sections: Array<ProjectSection>;
+    projectLink?: string;
 }

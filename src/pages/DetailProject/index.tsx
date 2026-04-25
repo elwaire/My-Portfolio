@@ -32,7 +32,7 @@ const DetailProjectPage: React.FC = () => {
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-6">
             <ProjectHeader head={projectData.head} />
             <div className="max-w-6xl w-full flex flex-col lg:flex-row gap-8 lg:gap-12 py-16">
-                <ProjectIntroduction introduction={projectData.introduction} />
+                <ProjectIntroduction introduction={projectData.introduction} projectLink={projectData.projectLink} />
 
                 <main className="w-full lg:w-3/4 space-y-16 lg:space-y-24">
                     {projectData.sections.map((section, index) => (

@@ -2,9 +2,10 @@ import type { ProjectIntroductionType } from "../../../types/project";
 
 interface ProjectIntroductionProps {
     introduction: ProjectIntroductionType;
+    projectLink?: string;
 }
 
-const ProjectIntroduction: React.FC<ProjectIntroductionProps> = ({ introduction }) => {
+const ProjectIntroduction: React.FC<ProjectIntroductionProps> = ({ introduction, projectLink }) => {
     const infoItems = [
         { label: "Client", value: introduction.client },
         { label: "Industry", value: introduction.industry },
@@ -25,6 +26,32 @@ const ProjectIntroduction: React.FC<ProjectIntroductionProps> = ({ introduction 
                     </div>
                 ))}
             </div>
+
+            {projectLink && (
+                <a
+                    href={projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 flex items-center gap-2 w-full justify-center px-4 py-2.5 rounded-xl bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-700 transition-colors duration-200"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    View Project
+                </a>
+            )}
         </aside>
     );
 };

@@ -1,5 +1,4 @@
-import { memo, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { memo } from "react";
 import type { ProjectSection, GalleryImage } from "../../../types/project";
 
 interface ContentSectionProps {
@@ -7,103 +6,28 @@ interface ContentSectionProps {
     index: number;
 }
 
-// Lightbox Component với Framer Motion
-const Lightbox: React.FC<{
-    src: string;
-    alt: string;
-    onClose: () => void;
-}> = ({ src, alt, onClose }) => {
-    return (
-        <motion.div
-            className="fixed inset-0 z-50 flex items-center h-screen justify-center bg-[#00000077] p-4 cursor-zoom-out"
-            onClick={onClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-        >
-            {/* Close button */}
-            <motion.button
-                className="absolute top-4 right-4 text-white/80 hover:text-white text-4xl font-light z-10 w-12 h-12 flex items-center justify-center"
-                onClick={onClose}
-                aria-label="Close"
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 90 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-            >
-                ×
-            </motion.button>
-
-            {/* Image */}
-            <motion.img
-                src={src}
-                alt={alt}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                onClick={(e) => e.stopPropagation()}
-                initial={{ scale: 0.5, opacity: 0, y: 50 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.5, opacity: 0, y: 50 }}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 25,
-                }}
-            />
-        </motion.div>
-    );
-};
-
-// Aspect ratio class mapping
-const ASPECT_CLASSES = {
-    "2/1": "aspect-[2/1]",
-    "6/5": "aspect-[6/5]",
-} as const;
-
 const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
     const isEven = index % 2 === 0;
-    const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
 
-    const openLightbox = useCallback((src: string, alt: string) => {
-        setLightboxImage({ src, alt });
-        document.body.style.overflow = "hidden";
-    }, []);
-
-    const closeLightbox = useCallback(() => {
-        setLightboxImage(null);
-        document.body.style.overflow = "";
-    }, []);
-
-    const getAspectClass = (ratio?: "2/1" | "6/5") => {
-        return ASPECT_CLASSES[ratio || "2/1"];
-    };
-
-    // Render single image với motion
-    const renderSingleImage = (url: string, alt?: string, aspectRatio?: "2/1" | "6/5") => {
+    // Render single image — full width, auto height (natural ratio)
+    const renderSingleImage = (url: string, alt?: string) => {
         const imageAlt = alt || section.title || "Project image";
         return (
-            <motion.div
-                className={`w-full ${getAspectClass(aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                transition={{ duration: 0.3 }}
-            >
-                <motion.img
+            <div className="w-full overflow-hidden rounded-xl shadow-md">
+                <img
                     src={url}
                     alt={imageAlt}
-                    className="w-full h-full object-cover cursor-zoom-in"
+                    className="w-full h-auto block"
                     loading="lazy"
-                    onClick={() => openLightbox(url, imageAlt)}
-                    transition={{ duration: 0.4 }}
                 />
-            </motion.div>
+            </div>
         );
     };
 
-    // Render gallery images
+    // Render gallery images — full width, auto height
     const renderGallery = (images: GalleryImage[]) => {
         if (images.length === 1) {
-            return renderSingleImage(images[0].url, images[0].alt, images[0].aspectRatio);
+            return renderSingleImage(images[0].url, images[0].alt);
         }
 
         if (images.length === 2) {
@@ -112,20 +36,14 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                     {images.map((img, imgIndex) => {
                         const imageAlt = img.alt || `${section.title} ${imgIndex + 1}`;
                         return (
-                            <motion.div
-                                key={imgIndex}
-                                className={`${getAspectClass(img.aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <motion.img
+                            <div key={imgIndex} className="overflow-hidden rounded-xl shadow-md">
+                                <img
                                     src={img.url}
                                     alt={imageAlt}
-                                    className="w-full h-full object-cover cursor-zoom-in"
+                                    className="w-full h-auto block"
                                     loading="lazy"
-                                    onClick={() => openLightbox(img.url, imageAlt)}
-                                    transition={{ duration: 0.4 }}
                                 />
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
@@ -135,41 +53,28 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
         // For 3 or more images
         return (
             <div className="w-full space-y-4">
-                <motion.div
-                    className={`${getAspectClass(images[0].aspectRatio)} overflow-hidden rounded-xl shadow-md`}
-                    transition={{ duration: 0.3 }}
-                >
-                    <motion.img
+                <div className="overflow-hidden rounded-xl shadow-md">
+                    <img
                         src={images[0].url}
                         alt={images[0].alt || `${section.title} 1`}
-                        className="w-full h-full object-cover cursor-zoom-in"
+                        className="w-full h-auto block"
                         loading="lazy"
-                        onClick={() => openLightbox(images[0].url, images[0].alt || `${section.title} 1`)}
-                        transition={{ duration: 0.4 }}
                     />
-                </motion.div>
+                </div>
 
                 {images.length > 1 && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {images.slice(1).map((img, imgIndex) => {
                             const imageAlt = img.alt || `${section.title} ${imgIndex + 2}`;
                             return (
-                                <motion.div
-                                    key={imgIndex + 1}
-                                    className={`${getAspectClass(
-                                        img.aspectRatio,
-                                    )} overflow-hidden rounded-xl shadow-md`}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <motion.img
+                                <div key={imgIndex + 1} className="overflow-hidden rounded-xl shadow-md">
+                                    <img
                                         src={img.url}
                                         alt={imageAlt}
-                                        className="w-full h-full object-cover cursor-zoom-in"
+                                        className="w-full h-auto block"
                                         loading="lazy"
-                                        onClick={() => openLightbox(img.url, imageAlt)}
-                                        transition={{ duration: 0.4 }}
                                     />
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>
@@ -193,7 +98,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
 
             case "image":
                 return section.image
-                    ? renderSingleImage(section.image, section.imageAlt, section.imageAspectRatio)
+                    ? renderSingleImage(section.image, section.imageAlt)
                     : null;
 
             case "gallery":
@@ -207,14 +112,14 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                         {isEven ? (
                             <>
                                 {section.image &&
-                                    renderSingleImage(section.image, section.imageAlt, section.imageAspectRatio)}
+                                    renderSingleImage(section.image, section.imageAlt)}
                                 {section.text && renderText(section.text)}
                             </>
                         ) : (
                             <>
                                 {section.text && renderText(section.text)}
                                 {section.image &&
-                                    renderSingleImage(section.image, section.imageAlt, section.imageAspectRatio)}
+                                    renderSingleImage(section.image, section.imageAlt)}
                             </>
                         )}
                     </div>
@@ -226,17 +131,10 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
     };
 
     return (
-        <>
-            <section className="space-y-6">
-                {section.title && <h2 className="text-2xl font-semibold">{section.title}</h2>}
-                <div className="space-y-6">{renderContent()}</div>
-            </section>
-
-            {/* Lightbox với AnimatePresence */}
-            <AnimatePresence>
-                {lightboxImage && <Lightbox src={lightboxImage.src} alt={lightboxImage.alt} onClose={closeLightbox} />}
-            </AnimatePresence>
-        </>
+        <section className="space-y-6">
+            {section.title && <h2 className="text-2xl font-semibold">{section.title}</h2>}
+            <div className="space-y-6">{renderContent()}</div>
+        </section>
     );
 };
 
