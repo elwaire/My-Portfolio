@@ -6,12 +6,12 @@ import SkeletonCard from "../../../../components/customs/SkeletonCard";
 import { useProjects } from "../../../../hooks/useProjects";
 
 const ProjectsSection = memo(() => {
-    const { projects: allProjects, loading, error } = useProjects();
+    const { projects: uiuxProjects, loading, error } = useProjects("uiux");
 
-    // Chỉ lấy 6 projects đầu tiên để show ở home
+    // Chỉ lấy 6 projects đầu tiên có category là uiux để show ở home
     const featuredProjects = useMemo(() => {
-        return allProjects.slice(0, 6);
-    }, [allProjects]);
+        return uiuxProjects.slice(0, 6);
+    }, [uiuxProjects]);
 
     const hasProjects = featuredProjects.length > 0;
 
