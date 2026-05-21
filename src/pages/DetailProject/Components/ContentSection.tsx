@@ -84,17 +84,95 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
     };
 
     // Render text content
-    const renderText = (text: string) => (
-        <div className="w-full">
-            <p className="text-neutral-600 font-light leading-relaxed max-w-3xl">{text}</p>
-        </div>
-    );
+    const renderTextContent = (sec: ProjectSection) => {
+        const { textStyle = "paragraph", paragraphs = [], text } = sec;
+
+        if (!paragraphs || paragraphs.length === 0) {
+            if (!text) return null;
+            return (
+                <div className="w-full">
+                    <p className="text-neutral-600 font-light leading-relaxed max-w-3xl">{text}</p>
+                </div>
+            );
+        }
+
+        if (textStyle === "paragraph") {
+            return (
+                <div className="w-full space-y-4">
+                    {paragraphs.map((p, idx) => (
+                        <p key={idx} className="text-neutral-600 font-light leading-relaxed max-w-3xl">
+                            {p.content}
+                        </p>
+                    ))}
+                </div>
+            );
+        }
+
+        if (textStyle === "list") {
+            return (
+                <div className="w-full">
+                    <ul className="list-disc pl-5 space-y-2 text-neutral-600 font-light max-w-3xl">
+                        {paragraphs.map((p, idx) => (
+                            <li key={idx} className="leading-relaxed">
+                                {p.content}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
+        if (textStyle === "mixed") {
+            // Group consecutive paragraph/list items
+            const groups: { type: "paragraph" | "list"; items: string[] }[] = [];
+            
+            paragraphs.forEach((p) => {
+                const currentType = p.type === "list" ? "list" : "paragraph";
+                const lastGroup = groups[groups.length - 1];
+                
+                if (lastGroup && lastGroup.type === currentType) {
+                    lastGroup.items.push(p.content);
+                } else {
+                    groups.push({ type: currentType, items: [p.content] });
+                }
+            });
+
+            return (
+                <div className="w-full space-y-4">
+                    {groups.map((group, gIdx) => {
+                        if (group.type === "list") {
+                            return (
+                                <ul key={gIdx} className="list-disc pl-5 space-y-2 text-neutral-600 font-light max-w-3xl">
+                                    {group.items.map((item, itemIdx) => (
+                                        <li key={itemIdx} className="leading-relaxed">
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            );
+                        }
+                        return (
+                            <div key={gIdx} className="space-y-4">
+                                {group.items.map((item, itemIdx) => (
+                                    <p key={itemIdx} className="text-neutral-600 font-light leading-relaxed max-w-3xl">
+                                        {item}
+                                    </p>
+                                ))}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+
+        return null;
+    };
 
     // Render content based on section type
     const renderContent = () => {
         switch (section.type) {
             case "text":
-                return section.text ? renderText(section.text) : null;
+                return renderTextContent(section);
 
             case "image":
                 return section.image
@@ -105,7 +183,8 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                 return section.images && section.images.length > 0 ? renderGallery(section.images) : null;
 
             case "text-image":
-                if (!section.text && !section.image) return null;
+                const hasText = (section.paragraphs && section.paragraphs.length > 0) || section.text;
+                if (!hasText && !section.image) return null;
 
                 return (
                     <div className="flex flex-col items-start gap-6">
@@ -113,11 +192,11 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                             <>
                                 {section.image &&
                                     renderSingleImage(section.image, section.imageAlt)}
-                                {section.text && renderText(section.text)}
+                                {hasText && renderTextContent(section)}
                             </>
                         ) : (
                             <>
-                                {section.text && renderText(section.text)}
+                                {hasText && renderTextContent(section)}
                                 {section.image &&
                                     renderSingleImage(section.image, section.imageAlt)}
                             </>

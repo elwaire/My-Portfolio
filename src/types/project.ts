@@ -35,12 +35,19 @@ export interface GalleryImage {
     aspectRatio?: "2/1" | "6/5"; // 2400x1200 hoặc 2400x2000
 }
 
+export interface Paragraph {
+    type?: "paragraph" | "list";
+    content: string;
+}
+
 // Project section với các loại content khác nhau
 export interface ProjectSection {
     title?: string;
     type: SectionType;
     // For type: "text" | "text-image"
     text?: string;
+    textStyle?: "paragraph" | "list" | "mixed";
+    paragraphs?: Paragraph[];
     // For type: "image" | "text-image"
     image?: string;
     imageAlt?: string;
