@@ -6,8 +6,7 @@ interface ContentSectionProps {
     index: number;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
-    const isEven = index % 2 === 0;
+const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
 
     // Render single image — full width, auto height (natural ratio)
     const renderSingleImage = (url: string, alt?: string) => {
