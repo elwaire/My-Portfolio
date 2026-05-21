@@ -187,20 +187,10 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                 if (!hasText && !section.image) return null;
 
                 return (
-                    <div className="flex flex-col items-start gap-6">
-                        {isEven ? (
-                            <>
-                                {section.image &&
-                                    renderSingleImage(section.image, section.imageAlt)}
-                                {hasText && renderTextContent(section)}
-                            </>
-                        ) : (
-                            <>
-                                {hasText && renderTextContent(section)}
-                                {section.image &&
-                                    renderSingleImage(section.image, section.imageAlt)}
-                            </>
-                        )}
+                    <div className="flex flex-col items-start gap-6 w-full">
+                        {hasText && renderTextContent(section)}
+                        {section.image &&
+                            renderSingleImage(section.image, section.imageAlt)}
                     </div>
                 );
 
