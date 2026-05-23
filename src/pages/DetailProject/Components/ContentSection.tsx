@@ -224,11 +224,11 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
     };
 
     return (
-        <section className={`transition-all duration-300 ${isSub ? "mt-4" : index === 0 ? "mt-0" : "mt-16 lg:mt-24"}`}>
+        <section className={`transition-all duration-300 ${isSub ? "mt-8 " : index === 0 ? "mt-0" : "mt-16"}`}>
             {section.title && (
                 <h2
                     className={` tracking-tight text-neutral-900 ${
-                        isSub ? "text-base  mb-3 font-medium text-neutral-600" : "text-2xl font-bold mb-6"
+                        isSub ? "text-base mt-8 font-medium text-neutral-600 mb-4" : "text-2xl font-bold mb-6"
                     }`}
                 >
                     {section.title}
