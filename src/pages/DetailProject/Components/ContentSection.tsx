@@ -6,19 +6,15 @@ interface ContentSectionProps {
     index: number;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
+const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
+    const isSub = !!section.isSubSection;
 
     // Render single image — full width, auto height (natural ratio)
     const renderSingleImage = (url: string, alt?: string) => {
         const imageAlt = alt || section.title || "Project image";
         return (
             <div className="w-full overflow-hidden rounded-xl shadow-md">
-                <img
-                    src={url}
-                    alt={imageAlt}
-                    className="w-full h-auto block"
-                    loading="lazy"
-                />
+                <img src={url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
             </div>
         );
     };
@@ -36,12 +32,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                         const imageAlt = img.alt || `${section.title} ${imgIndex + 1}`;
                         return (
                             <div key={imgIndex} className="overflow-hidden rounded-xl shadow-md">
-                                <img
-                                    src={img.url}
-                                    alt={imageAlt}
-                                    className="w-full h-auto block"
-                                    loading="lazy"
-                                />
+                                <img src={img.url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
                             </div>
                         );
                     })}
@@ -67,12 +58,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                             const imageAlt = img.alt || `${section.title} ${imgIndex + 2}`;
                             return (
                                 <div key={imgIndex + 1} className="overflow-hidden rounded-xl shadow-md">
-                                    <img
-                                        src={img.url}
-                                        alt={imageAlt}
-                                        className="w-full h-auto block"
-                                        loading="lazy"
-                                    />
+                                    <img src={img.url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
                                 </div>
                             );
                         })}
@@ -98,11 +84,23 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
         if (textStyle === "paragraph") {
             return (
                 <div className="w-full space-y-4">
-                    {paragraphs.map((p, idx) => (
-                        <p key={idx} className="text-neutral-600 font-light leading-relaxed max-w-3xl">
-                            {p.content}
-                        </p>
-                    ))}
+                    {paragraphs.map((p, idx) => {
+                        if (p.type === "subtitle") {
+                            return (
+                                <h3
+                                    key={idx}
+                                    className="text-lg md:text-xl font-semibold text-neutral-800 pt-3 pb-1 max-w-3xl"
+                                >
+                                    {p.content}
+                                </h3>
+                            );
+                        }
+                        return (
+                            <p key={idx} className="text-neutral-600 font-light leading-relaxed max-w-3xl">
+                                {p.content}
+                            </p>
+                        );
+                    })}
                 </div>
             );
         }
@@ -111,37 +109,67 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
             return (
                 <div className="w-full">
                     <ul className="list-disc pl-5 space-y-2 text-neutral-600 font-light max-w-3xl">
-                        {paragraphs.map((p, idx) => (
-                            <li key={idx} className="leading-relaxed">
-                                {p.content}
-                            </li>
-                        ))}
+                        {paragraphs.map((p, idx) => {
+                            if (p.type === "subtitle") {
+                                return (
+                                    <h3
+                                        key={idx}
+                                        className="text-lg md:text-xl font-semibold text-neutral-800 pt-3 pb-1 -ml-5 max-w-3xl"
+                                    >
+                                        {p.content}
+                                    </h3>
+                                );
+                            }
+                            return (
+                                <li key={idx} className="leading-relaxed">
+                                    {p.content}
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             );
         }
 
         if (textStyle === "mixed") {
-            // Group consecutive paragraph/list items
-            const groups: { type: "paragraph" | "list"; items: string[] }[] = [];
-            
+            // Group consecutive paragraph/list items, keeping subtitle separate
+            const groups: ({ type: "paragraph" | "list"; items: string[] } | { type: "subtitle"; content: string })[] =
+                [];
+
             paragraphs.forEach((p) => {
-                const currentType = p.type === "list" ? "list" : "paragraph";
-                const lastGroup = groups[groups.length - 1];
-                
-                if (lastGroup && lastGroup.type === currentType) {
-                    lastGroup.items.push(p.content);
+                if (p.type === "subtitle") {
+                    groups.push({ type: "subtitle", content: p.content });
                 } else {
-                    groups.push({ type: currentType, items: [p.content] });
+                    const currentType = p.type === "list" ? "list" : "paragraph";
+                    const lastGroup = groups[groups.length - 1];
+
+                    if (lastGroup && lastGroup.type === currentType) {
+                        (lastGroup as { type: "paragraph" | "list"; items: string[] }).items.push(p.content);
+                    } else {
+                        groups.push({ type: currentType, items: [p.content] });
+                    }
                 }
             });
 
             return (
                 <div className="w-full space-y-4">
                     {groups.map((group, gIdx) => {
+                        if (group.type === "subtitle") {
+                            return (
+                                <h3
+                                    key={gIdx}
+                                    className="text-lg md:text-xl font-semibold text-neutral-800 pt-3 pb-1 max-w-3xl"
+                                >
+                                    {group.content}
+                                </h3>
+                            );
+                        }
                         if (group.type === "list") {
                             return (
-                                <ul key={gIdx} className="list-disc pl-5 space-y-2 text-neutral-600 font-light max-w-3xl">
+                                <ul
+                                    key={gIdx}
+                                    className="list-disc pl-5 space-y-2 text-neutral-600 font-light max-w-3xl"
+                                >
                                     {group.items.map((item, itemIdx) => (
                                         <li key={itemIdx} className="leading-relaxed">
                                             {item}
@@ -174,9 +202,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                 return renderTextContent(section);
 
             case "image":
-                return section.image
-                    ? renderSingleImage(section.image, section.imageAlt)
-                    : null;
+                return section.image ? renderSingleImage(section.image, section.imageAlt) : null;
 
             case "gallery":
                 return section.images && section.images.length > 0 ? renderGallery(section.images) : null;
@@ -188,8 +214,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                 return (
                     <div className="flex flex-col items-start gap-6 w-full">
                         {hasText && renderTextContent(section)}
-                        {section.image &&
-                            renderSingleImage(section.image, section.imageAlt)}
+                        {section.image && renderSingleImage(section.image, section.imageAlt)}
                     </div>
                 );
 
@@ -199,8 +224,16 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
     };
 
     return (
-        <section className="space-y-6">
-            {section.title && <h2 className="text-2xl font-semibold">{section.title}</h2>}
+        <section className={`transition-all duration-300 ${isSub ? "mt-4" : index === 0 ? "mt-0" : "mt-16 lg:mt-24"}`}>
+            {section.title && (
+                <h2
+                    className={` tracking-tight text-neutral-900 ${
+                        isSub ? "text-base  mb-3 font-medium text-neutral-600" : "text-2xl font-bold mb-6"
+                    }`}
+                >
+                    {section.title}
+                </h2>
+            )}
             <div className="space-y-6">{renderContent()}</div>
         </section>
     );

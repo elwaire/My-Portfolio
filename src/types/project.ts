@@ -35,19 +35,21 @@ export interface GalleryImage {
     aspectRatio?: "2/1" | "6/5"; // 2400x1200 hoặc 2400x2000
 }
 
-export interface Paragraph {
-    type?: "paragraph" | "list";
+// Định nghĩa cấu trúc từng dòng văn bản trong Text block
+export interface ParagraphItem {
+    type?: "paragraph" | "list" | "subtitle"; // Thêm type "subtitle" cho tiêu đề nhỏ (tùy chọn)
     content: string;
 }
 
 // Project section với các loại content khác nhau
 export interface ProjectSection {
     title?: string;
+    isSubSection?: boolean; // Thêm trường đánh dấu là Section con (tùy chọn)
     type: SectionType;
     // For type: "text" | "text-image"
     text?: string;
     textStyle?: "paragraph" | "list" | "mixed";
-    paragraphs?: Paragraph[];
+    paragraphs?: ParagraphItem[];
     // For type: "image" | "text-image"
     image?: string;
     imageAlt?: string;

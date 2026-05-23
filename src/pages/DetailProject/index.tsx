@@ -34,7 +34,7 @@ const DetailProjectPage: React.FC = () => {
             <div className="max-w-6xl w-full flex flex-col lg:flex-row gap-8 lg:gap-12 py-16">
                 <ProjectIntroduction introduction={projectData.introduction} projectLink={projectData.projectLink} />
 
-                <main className="w-full lg:w-3/4 space-y-16 lg:space-y-24">
+                <main className="w-full lg:w-3/4">
                     {projectData.sections.map((section, index) => (
                         <ContentSection key={index} section={section} index={index} />
                     ))}
