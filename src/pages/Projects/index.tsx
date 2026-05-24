@@ -22,7 +22,12 @@ const ProjectsPage: React.FC = () => {
 
     // Memoize filtered projects để tránh re-calculate
     const filteredProjects = useMemo(() => {
-        return allProjects.filter((project) => project.category === activeCategory);
+        const filtered = allProjects.filter((project) => project.category === activeCategory);
+        return filtered.sort((a, b) => {
+            const aPinned = a.isPinned ? 1 : 0;
+            const bPinned = b.isPinned ? 1 : 0;
+            return bPinned - aPinned;
+        });
     }, [allProjects, activeCategory]);
 
     // Memoize category change handler

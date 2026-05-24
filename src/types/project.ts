@@ -6,6 +6,7 @@ export interface Project {
     description: string;
     image: string;
     category: "uiux" | "graphic" | "art";
+    isPinned?: boolean;
 }
 
 export interface ProjectIntroductionType {
@@ -23,6 +24,7 @@ export interface ProjectHead {
     thumbnail: string;
     category: "uiux" | "graphic" | "art";
     projectLink?: string;
+    isPinned?: boolean;
 }
 
 // Section types

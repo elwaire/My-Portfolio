@@ -8,9 +8,14 @@ import { useProjects } from "../../../../hooks/useProjects";
 const ProjectsSection = memo(() => {
     const { projects: uiuxProjects, loading, error } = useProjects("uiux");
 
-    // Chỉ lấy 6 projects đầu tiên có category là uiux để show ở home
+    // Chỉ lấy 6 projects đầu tiên có category là uiux (ưu tiên dự án đã ghim) để show ở home
     const featuredProjects = useMemo(() => {
-        return uiuxProjects.slice(0, 6);
+        const sorted = [...uiuxProjects].sort((a, b) => {
+            const aPinned = a.isPinned ? 1 : 0;
+            const bPinned = b.isPinned ? 1 : 0;
+            return bPinned - aPinned;
+        });
+        return sorted.slice(0, 6);
     }, [uiuxProjects]);
 
     const hasProjects = featuredProjects.length > 0;

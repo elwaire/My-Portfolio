@@ -40,7 +40,15 @@ class ProjectService {
                     description: data.head.description,
                     image: data.head.thumbnail,
                     category: data.head.category,
+                    isPinned: data.head.isPinned || false,
                 };
+            });
+
+            // Sắp xếp đưa các dự án được ghim lên đầu danh sách
+            projects.sort((a, b) => {
+                const aPinned = a.isPinned ? 1 : 0;
+                const bPinned = b.isPinned ? 1 : 0;
+                return bPinned - aPinned;
             });
 
             // Lưu vào cache
