@@ -136,7 +136,7 @@ const BannerSection = memo(() => {
                 >
                     {/* Contact Button */}
                     <a
-                        href="#contact"
+                        href="mailto:minull1810@gmail.com"
                         className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white rounded-full text-sm font-medium transition-colors shadow-lg inline-block text-center no-underline hover:bg-gray-700"
                     >
                         Contact Me

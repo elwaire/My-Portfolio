@@ -19,7 +19,7 @@ const SOCIAL_LINKS = [
     },
     {
         label: "TikTok",
-        href: "https://tiktok.com/@YOUR_HANDLE",
+        href: "https://www.tiktok.com/@min_ktys4tt",
         icon: "https://i.pinimg.com/736x/55/45/a2/5545a2a9ce938ec70e0941cdd7a82105.jpg",
     },
 ];
