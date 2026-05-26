@@ -4,6 +4,8 @@ import { memo, useMemo } from "react";
 import ProjectCard from "../../../../components/customs/ProjectCard";
 import SkeletonCard from "../../../../components/customs/SkeletonCard";
 import { useProjects } from "../../../../hooks/useProjects";
+import { Link } from "react-router-dom";
+import PATHS from "../../../../constants/paths";
 
 const ProjectsSection = memo(() => {
     const { projects: uiuxProjects, loading, error } = useProjects("uiux");
@@ -68,7 +70,7 @@ const ProjectsSection = memo(() => {
                         </div>
 
                         {/* View All Button */}
-                        {/* {hasProjects && (
+                        {hasProjects && (
                             <motion.div
                                 className="text-center mt-12"
                                 initial={{ opacity: 0, y: 20 }}
@@ -78,7 +80,7 @@ const ProjectsSection = memo(() => {
                             >
                                 <Link to={PATHS.PROJECT}>
                                     <motion.button
-                                        className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors duration-300"
+                                        className="px-8 py-4 bg-gray-900 text-sm cursor-pointer text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
@@ -86,7 +88,7 @@ const ProjectsSection = memo(() => {
                                     </motion.button>
                                 </Link>
                             </motion.div>
-                        )} */}
+                        )}
 
                         {/* Empty State */}
                         {!hasProjects && (
