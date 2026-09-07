@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useBlogs } from "../../hooks/useBlogs";
 import type { Blog } from "../../types/blog";
+import transitionPage from "../../hoc/TransitionPage";
 
 const CATEGORIES = [
     { value: "all", label: "All" },
@@ -335,4 +336,4 @@ const BlogPage: React.FC = () => {
     );
 };
 
-export default BlogPage;
+export default transitionPage(BlogPage);

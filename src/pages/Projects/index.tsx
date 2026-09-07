@@ -3,6 +3,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import ProjectCard from "../../components/customs/ProjectCard";
 import SkeletonCard from "../../components/customs/SkeletonCard";
 import { useProjects } from "../../hooks/useProjects";
+import transitionPage from "../../hoc/TransitionPage";
 
 type Category = "uiux" | "graphic" | "art";
 
@@ -136,4 +137,4 @@ const CategoryButton = React.memo<CategoryButtonProps>(({ category, isActive, on
 
 CategoryButton.displayName = "CategoryButton";
 
-export default ProjectsPage;
+export default transitionPage(ProjectsPage);

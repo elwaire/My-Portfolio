@@ -1,21 +1,57 @@
 import { memo } from "react";
+import { motion, type Variants } from "framer-motion";
 import type { ProjectSection, GalleryImage } from "../../../types/project";
 
 interface ContentSectionProps {
     section: ProjectSection;
     index: number;
+    onImageClick?: (url: string) => void;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
+// Hiệu ứng "tờ giấy bay lên rồi rơi xuống": trượt từ dưới lên, to dần, hơi nghiêng rồi thẳng lại
+const paperVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 60,
+        scale: 0.9,
+    },
+    visible: (custom: number = 0) => ({
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 2,
+            ease: [0.22, 1, 0.36, 1],
+            delay: custom,
+        },
+    }),
+};
+
+const ContentSection: React.FC<ContentSectionProps> = ({ section, index, onImageClick }) => {
     const isSub = !!section.isSubSection;
 
     // Render single image — full width, auto height (natural ratio)
-    const renderSingleImage = (url: string, alt?: string) => {
+    const renderSingleImage = (url: string, alt?: string, delay = 0) => {
         const imageAlt = alt || section.title || "Project image";
         return (
-            <div className="w-full overflow-hidden rounded-xl shadow-md">
-                <img src={url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
-            </div>
+            <motion.div
+                className={`w-full overflow-hidden rounded-xl shadow-md ${
+                    onImageClick ? "cursor-zoom-in group" : ""
+                }`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                variants={paperVariants}
+                custom={delay}
+                onClick={() => onImageClick?.(url)}
+            >
+                <img
+                    src={url}
+                    alt={imageAlt}
+                    className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.015]"
+                    loading="lazy"
+                />
+            </motion.div>
         );
     };
 
@@ -31,9 +67,25 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
                     {images.map((img, imgIndex) => {
                         const imageAlt = img.alt || `${section.title} ${imgIndex + 1}`;
                         return (
-                            <div key={imgIndex} className="overflow-hidden rounded-xl shadow-md">
-                                <img src={img.url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
-                            </div>
+                            <motion.div
+                                key={imgIndex}
+                                className={`overflow-hidden rounded-xl shadow-md ${
+                                    onImageClick ? "cursor-zoom-in group" : ""
+                                }`}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.25 }}
+                                variants={paperVariants}
+                                custom={imgIndex * 0.12}
+                                onClick={() => onImageClick?.(img.url)}
+                            >
+                                <img
+                                    src={img.url}
+                                    alt={imageAlt}
+                                    className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.015]"
+                                    loading="lazy"
+                                />
+                            </motion.div>
                         );
                     })}
                 </div>
@@ -43,23 +95,48 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
         // For 3 or more images
         return (
             <div className="w-full space-y-4">
-                <div className="overflow-hidden rounded-xl shadow-md">
+                <motion.div
+                    className={`overflow-hidden rounded-xl shadow-md ${
+                        onImageClick ? "cursor-zoom-in group" : ""
+                    }`}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}
+                    variants={paperVariants}
+                    onClick={() => onImageClick?.(images[0].url)}
+                >
                     <img
                         src={images[0].url}
                         alt={images[0].alt || `${section.title} 1`}
-                        className="w-full h-auto block"
+                        className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.015]"
                         loading="lazy"
                     />
-                </div>
+                </motion.div>
 
                 {images.length > 1 && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {images.slice(1).map((img, imgIndex) => {
                             const imageAlt = img.alt || `${section.title} ${imgIndex + 2}`;
                             return (
-                                <div key={imgIndex + 1} className="overflow-hidden rounded-xl shadow-md">
-                                    <img src={img.url} alt={imageAlt} className="w-full h-auto block" loading="lazy" />
-                                </div>
+                                <motion.div
+                                    key={imgIndex + 1}
+                                    className={`overflow-hidden rounded-xl shadow-md ${
+                                        onImageClick ? "cursor-zoom-in group" : ""
+                                    }`}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.25 }}
+                                    variants={paperVariants}
+                                    custom={imgIndex * 0.12}
+                                    onClick={() => onImageClick?.(img.url)}
+                                >
+                                    <img
+                                        src={img.url}
+                                        alt={imageAlt}
+                                        className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.015]"
+                                        loading="lazy"
+                                    />
+                                </motion.div>
                             );
                         })}
                     </div>
@@ -132,7 +209,6 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
         }
 
         if (textStyle === "mixed") {
-            // Group consecutive paragraph/list items, keeping subtitle separate
             const groups: ({ type: "paragraph" | "list"; items: string[] } | { type: "subtitle"; content: string })[] =
                 [];
 

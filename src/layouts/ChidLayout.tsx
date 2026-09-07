@@ -6,7 +6,7 @@ export default function ChildLayout() {
     return (
         <div className="AppWrapper">
             <div className="min-h-screen ">
-                <div className="fixed top-4 left-1/2 -translate-x-1/2">
+                <div className="fixed top-4 z-50 left-1/2 -translate-x-1/2">
                     <CloseButton />
                 </div>
                 <Outlet />
