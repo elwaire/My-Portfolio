@@ -29,7 +29,8 @@
 
 #root {
     margin: 0 auto;
-    background: #fdfcf9;
+    /* background: #fdfcf9; */
+    background: #faf7ef;
     color: #000000;
     /* font-family: "Raleway", sans-serif; */
 }

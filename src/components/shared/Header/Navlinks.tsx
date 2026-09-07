@@ -6,14 +6,15 @@ import { dataNavLink } from "../../../constants/paths";
 const NavLinks = memo(({ onClick }: { onClick?: () => void }) => {
     return (
         <motion.div
-            className="flex gap-2 p-2 rounded-2xl"
-            style={{
-                background: "rgba(255, 255, 255, 0.1)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-            }}
+            className="flex "
+            // gap-2 p-2 rounded-2xl
+            // style={{
+            //     background: "rgba(255, 255, 255, 0.1)",
+            //     backdropFilter: "blur(20px)",
+            //     WebkitBackdropFilter: "blur(20px)",
+            //     border: "1px solid rgba(255, 255, 255, 0.2)",
+            //     boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+            // }}
             initial={{
                 opacity: 0,
                 y: -20,
@@ -42,19 +43,19 @@ const NavLinks = memo(({ onClick }: { onClick?: () => void }) => {
                             {isActive && (
                                 <motion.span
                                     layoutId="active-pill"
-                                    className="absolute inset-0 rounded-xl"
-                                    style={{
-                                        background: "rgba(255, 255, 255, 0.2)",
-                                        backdropFilter: "blur(10px)",
-                                        WebkitBackdropFilter: "blur(10px)",
-                                        border: "1px solid rgba(255, 255, 255, 0.3)",
-                                    }}
+                                    className="absolute inset-0 "
+                                    // style={{
+                                    //     background: "rgba(255, 255, 255, 0.2)",
+                                    //     backdropFilter: "blur(10px)",
+                                    //     WebkitBackdropFilter: "blur(10px)",
+                                    //     border: "1px solid rgba(255, 255, 255, 0.3)",
+                                    // }}
                                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
                             <span
                                 className={`relative z-10 ${
-                                    isActive ? "text-gray-800 font-semibold" : "text-gray-400 text-light"
+                                    isActive ? "text-gray-800 underline font-semibold" : "text-gray-400 text-light"
                                 }`}
                             >
                                 {item.label}

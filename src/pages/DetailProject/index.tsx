@@ -7,6 +7,7 @@ import ProjectDetailSkeleton from "./Components/ProjectDetailSkeleton";
 import ProjectHeader from "./Components/ProjectHeader";
 import ProjectIntroduction from "./Components/ProjectIntroduction";
 import ImageLightbox, { type LightboxImage } from "./Components/ImageLightbox";
+import transitionPage from "../../hoc/TransitionPage";
 
 const DetailProjectPage: React.FC = () => {
     const { idProject } = useParams<{ idProject: string }>();
@@ -75,18 +76,13 @@ const DetailProjectPage: React.FC = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-6">
-            <ProjectHeader head={projectData.head} onImageClick={handleImageClick} />
+            <ProjectHeader head={projectData.head} projectId={idProject} onImageClick={handleImageClick} />
             <div className="max-w-6xl w-full flex flex-col lg:flex-row gap-8 lg:gap-12 py-16">
                 <ProjectIntroduction introduction={projectData.introduction} projectLink={projectData.projectLink} />
 
                 <main className="w-full lg:w-3/4">
                     {projectData.sections.map((section, index) => (
-                        <ContentSection
-                            key={index}
-                            section={section}
-                            index={index}
-                            onImageClick={handleImageClick}
-                        />
+                        <ContentSection key={index} section={section} index={index} onImageClick={handleImageClick} />
                     ))}
                 </main>
             </div>
@@ -103,5 +99,4 @@ const DetailProjectPage: React.FC = () => {
     );
 };
 
-export default DetailProjectPage;
-
+export default transitionPage(DetailProjectPage);

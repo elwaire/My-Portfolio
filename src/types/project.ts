@@ -25,6 +25,8 @@ export interface ProjectHead {
     category: "uiux" | "graphic" | "art";
     projectLink?: string;
     isPinned?: boolean;
+    likes?: number;
+    views?: number;
 }
 
 // Section types
@@ -65,4 +67,8 @@ export interface ProjectData {
     introduction: ProjectIntroductionType;
     sections: Array<ProjectSection>;
     projectLink?: string;
+    likes?: number;
+    views?: number;
 }
+
+

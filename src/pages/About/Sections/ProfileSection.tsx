@@ -34,7 +34,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ data }) => (
                     <p className="text-xl text-gray-600 mb-4">{data.title}</p>
                     <div className="flex flex-wrap gap-2">
                         {data.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full">
+                            <span key={skill} className="px-3 py-1 text-sm bg-[#fdf0cf] text-gray-700 rounded-full">
                                 {skill}
                             </span>
                         ))}

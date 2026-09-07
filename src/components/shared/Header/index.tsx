@@ -45,8 +45,8 @@ const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="border-b border-stroke-default bg-background lg:bg-transparent lg:border-none fixed z-50 w-full">
-            <div className="max-w-6xl mx-auto px-4 py-4 lg:w-full relative flex justify-between lg:justify-center items-center">
+        <header className="border-b  bg-[#faf7ef]  border-[#e7dfcb]   fixed z-50 w-full">
+            <div className="max-w-6xl mx-auto px-4 py-4 lg:w-full relative flex justify-between  lg:justify-center items-center">
                 {/* Logo */}
                 <Logo className="lg:absolute lg:left-4" />
 

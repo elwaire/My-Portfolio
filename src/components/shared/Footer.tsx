@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-50 text-black border-t border-gray-200">
+        <footer className="bg-[#faf7ef] text-black border-t border-[#eae1cb]">
             {/* CTA Section */}
             <div className="container mx-auto px-6 py-20 text-center">
                 <p className="text-neutral-400 text-sm font-light uppercase tracking-widest mb-4">

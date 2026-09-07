@@ -22,7 +22,7 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ achievements 
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-                    className="flex gap-6 p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex gap-6 p-4 rounded-lg  transition-colors"
                 >
                     <div className="text-lg font-semibold text-gray-500 min-w-[60px]">{achievement.year}</div>
                     <div className="flex-1">

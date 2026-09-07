@@ -1,5 +1,4 @@
-// services/projectService.ts
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, increment, query, updateDoc, where } from "firebase/firestore";
 import type { Project, ProjectData } from "../types/project";
 import { db } from "../configs/firebase";
 
@@ -85,6 +84,54 @@ class ProjectService {
         } catch (error) {
             console.error("Error fetching project detail:", error);
             throw new Error("Failed to fetch project detail");
+        }
+    }
+
+    /**
+     * Tăng/giảm lượt like của project trên Firebase
+     */
+    async likeProject(id: string, isLike: boolean): Promise<void> {
+        try {
+            const docRef = doc(db, this.collectionName, id);
+            await updateDoc(docRef, {
+                likes: increment(isLike ? 1 : -1),
+            });
+
+            // Cập nhật cache nếu có
+            if (this.fullProjectsCache.has(id)) {
+                const cached = this.fullProjectsCache.get(id)!;
+                const currentLikes = cached.likes || 0;
+                this.fullProjectsCache.set(id, {
+                    ...cached,
+                    likes: Math.max(0, currentLikes + (isLike ? 1 : -1)),
+                });
+            }
+        } catch (error) {
+            console.error("Error updating project like:", error);
+            throw error;
+        }
+    }
+
+    /**
+     * Tăng lượt view của project trên Firebase
+     */
+    async incrementView(id: string): Promise<void> {
+        try {
+            const docRef = doc(db, this.collectionName, id);
+            await updateDoc(docRef, {
+                views: increment(1),
+            });
+
+            // Cập nhật cache nếu có
+            if (this.fullProjectsCache.has(id)) {
+                const cached = this.fullProjectsCache.get(id)!;
+                this.fullProjectsCache.set(id, {
+                    ...cached,
+                    views: (cached.views || 0) + 1,
+                });
+            }
+        } catch (error) {
+            console.error("Error incrementing project view:", error);
         }
     }
 
