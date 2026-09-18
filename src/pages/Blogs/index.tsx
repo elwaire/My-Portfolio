@@ -1,10 +1,9 @@
 // pages/client/BlogPage.tsx
-import React, { useState, useMemo } from "react";
 import { motion, type Variants } from "framer-motion";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useBlogs } from "../../hooks/useBlogs";
 import type { Blog } from "../../types/blog";
-import transitionPage from "../../hoc/TransitionPage";
 
 const CATEGORIES = [
     { value: "all", label: "All" },
@@ -336,4 +335,4 @@ const BlogPage: React.FC = () => {
     );
 };
 
-export default transitionPage(BlogPage);
+export default BlogPage;

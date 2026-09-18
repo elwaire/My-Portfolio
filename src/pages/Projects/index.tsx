@@ -3,7 +3,6 @@ import React, { useCallback, useMemo, useState } from "react";
 import ProjectCard from "../../components/customs/ProjectCard";
 import SkeletonCard from "../../components/customs/SkeletonCard";
 import { useProjects } from "../../hooks/useProjects";
-import transitionPage from "../../hoc/TransitionPage";
 
 type Category = "uiux" | "graphic" | "art";
 
@@ -127,7 +126,7 @@ const CategoryButton = React.memo<CategoryButtonProps>(({ category, isActive, on
         <button
             onClick={handleClick}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                isActive ? "bg-black text-white shadow-md" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                isActive ? "bg-black text-white shadow-md" : "bg-gray-200 text-gray-700 hover:bg-gray-200"
             }`}
         >
             {label}
@@ -137,4 +136,4 @@ const CategoryButton = React.memo<CategoryButtonProps>(({ category, isActive, on
 
 CategoryButton.displayName = "CategoryButton";
 
-export default transitionPage(ProjectsPage);
+export default ProjectsPage;

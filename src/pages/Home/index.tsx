@@ -1,4 +1,3 @@
-import transitionPage from "../../hoc/TransitionPage";
 import BannerSection from "./Sections/BannerSection";
 import Certificate from "./Sections/CertificateSection";
 import ProjectsSection from "./Sections/ProjectsSection";
@@ -13,4 +12,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default transitionPage(HomePage);
+export default HomePage;

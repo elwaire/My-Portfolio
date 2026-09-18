@@ -1,10 +1,9 @@
 // pages/client/DetailBlogPage.tsx
 import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import PATHS from "../../constants/paths";
 import { useBlogDetail } from "../../hooks/useBlogs";
 import type { BlogContentBlock } from "../../types/blog";
-import PATHS from "../../constants/paths";
-import transitionPage from "../../hoc/TransitionPage";
 
 // Content Block Renderer
 const ContentBlock: React.FC<{ block: BlogContentBlock }> = ({ block }) => {
@@ -159,4 +158,4 @@ const DetailBlogPage: React.FC = () => {
     );
 };
 
-export default transitionPage(DetailBlogPage);
+export default DetailBlogPage;

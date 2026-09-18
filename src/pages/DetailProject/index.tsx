@@ -3,11 +3,10 @@ import { Navigate, useParams } from "react-router-dom";
 import PATHS from "../../constants/paths";
 import { useProjectDetail } from "../../hooks/useProjectDetail";
 import ContentSection from "./Components/ContentSection";
+import ImageLightbox, { type LightboxImage } from "./Components/ImageLightbox";
 import ProjectDetailSkeleton from "./Components/ProjectDetailSkeleton";
 import ProjectHeader from "./Components/ProjectHeader";
 import ProjectIntroduction from "./Components/ProjectIntroduction";
-import ImageLightbox, { type LightboxImage } from "./Components/ImageLightbox";
-import transitionPage from "../../hoc/TransitionPage";
 
 const DetailProjectPage: React.FC = () => {
     const { idProject } = useParams<{ idProject: string }>();
@@ -99,4 +98,4 @@ const DetailProjectPage: React.FC = () => {
     );
 };
 
-export default transitionPage(DetailProjectPage);
+export default DetailProjectPage;

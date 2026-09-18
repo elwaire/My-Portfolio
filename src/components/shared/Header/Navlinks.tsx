@@ -55,7 +55,7 @@ const NavLinks = memo(({ onClick }: { onClick?: () => void }) => {
                             )}
                             <span
                                 className={`relative z-10 ${
-                                    isActive ? "text-gray-800 underline font-semibold" : "text-gray-400 text-light"
+                                    isActive ? "text-gray-800  font-semibold" : "text-gray-400 text-light"
                                 }`}
                             >
                                 {item.label}

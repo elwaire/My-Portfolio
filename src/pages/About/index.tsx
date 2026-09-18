@@ -1,5 +1,4 @@
 import { aboutSections } from "../../constants/aboutData";
-import transitionPage from "../../hoc/TransitionPage";
 import { useAbout } from "../../hooks/useAbout";
 import AboutSidebar from "./Sections/AboutSiderBar";
 import AchievementsSection from "./Sections/AchievementsSection";
@@ -45,4 +44,4 @@ const AboutUsPage: React.FC = () => {
     );
 };
 
-export default transitionPage(AboutUsPage);
+export default AboutUsPage;
