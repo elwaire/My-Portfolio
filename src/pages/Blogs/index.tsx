@@ -60,7 +60,7 @@ const LatestBlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     {/* Thumbnail */}
                     <motion.div
-                        className="aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-100"
+                        className="aspect-[16/10] overflow-hidden bg-neutral-100"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                     >
@@ -78,14 +78,14 @@ const LatestBlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
                     <div className="space-y-4 lg:space-y-6">
                         {/* Badge */}
                         <div className="flex items-center gap-3">
-                            <span className="inline-block px-3 py-1 text-xs font-medium bg-neutral-900 text-white rounded-full">
+                            <span className="inline-block px-3 py-1 text-xs font-medium bg-neutral-900 text-white ">
                                 Latest
                             </span>
                             <span className="text-sm text-neutral-500 capitalize">{blog.category}</span>
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-neutral-900 group-hover:text-neutral-600 transition-colors duration-300 leading-tight">
+                        <h2 className="text-2xl md:text-3xl font-medium text-neutral-900 group-hover:text-neutral-600 transition-colors duration-300 leading-tight">
                             {blog.title}
                         </h2>
 
@@ -95,17 +95,17 @@ const LatestBlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
                         </p>
 
                         {/* Meta */}
-                        <div className="flex items-center gap-4 pt-2">
-                            <span className="text-sm text-neutral-500">{formatDate(blog.createdAt)}</span>
+                        <div className="flex items-center font-light gap-4 pt-2">
+                            <span className="text-xs text-neutral-500">{formatDate(blog.createdAt)}</span>
                             <span className="text-neutral-300">•</span>
-                            <span className="text-sm text-neutral-500">{blog.readTime || 5} min read</span>
+                            <span className="text-xs text-neutral-500">{blog.readTime || 5} min read</span>
                             <span className="text-neutral-300">•</span>
-                            <span className="text-sm text-neutral-500">{blog.views || 0} views</span>
+                            <span className="text-xs text-neutral-500">{blog.views || 0} views</span>
                         </div>
 
                         {/* Read more */}
                         <div className="pt-2">
-                            <span className="inline-flex items-center gap-2 text-neutral-900 font-medium group-hover:gap-3 transition-all duration-300">
+                            <span className="inline-flex items-center gap-2 text-sm text-neutral-900 group-hover:underline group-hover:gap-3 transition-all duration-300">
                                 Read article
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -131,7 +131,7 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
             <Link to={`/blog/${blog.id}`} className="block">
                 {/* Thumbnail */}
                 <motion.div
-                    className="aspect-[16/10] overflow-hidden rounded-xl bg-neutral-100 mb-4"
+                    className="aspect-[16/10] overflow-hidden  bg-neutral-100 mb-4"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                 >
@@ -148,7 +148,7 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
                 {/* Content */}
                 <div className="space-y-2">
                     {/* Meta */}
-                    <div className="flex items-center gap-3 text-sm text-neutral-500">
+                    <div className="flex items-center gap-3 font-light text-sm text-neutral-500">
                         <span className="capitalize">{blog.category}</span>
                         <span>·</span>
                         <span>{blog.readTime || 5} min</span>
@@ -165,7 +165,7 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
                     <p className="text-neutral-600 font-light text-sm line-clamp-2">{blog.description}</p>
 
                     {/* Date */}
-                    <p className="text-xs text-neutral-400 pt-1">{formatDate(blog.createdAt)}</p>
+                    <p className="text-xs font-light text-neutral-400 pt-1">{formatDate(blog.createdAt)}</p>
                 </div>
             </Link>
         </motion.article>
@@ -175,27 +175,27 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
 // Loading Skeleton
 const LatestBlogSkeleton: React.FC = () => (
     <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center animate-pulse">
-        <div className="aspect-[16/10] bg-neutral-200 rounded-2xl" />
+        <div className="aspect-[16/10] bg-neutral-200 " />
         <div className="space-y-4">
             <div className="flex gap-3">
-                <div className="h-6 w-16 bg-neutral-200 rounded-full" />
-                <div className="h-6 w-20 bg-neutral-200 rounded" />
+                <div className="h-6 w-16 bg-neutral-200 " />
+                <div className="h-6 w-20 bg-neutral-200 " />
             </div>
-            <div className="h-10 bg-neutral-200 rounded w-full" />
-            <div className="h-10 bg-neutral-200 rounded w-3/4" />
-            <div className="h-20 bg-neutral-200 rounded w-full" />
-            <div className="h-4 bg-neutral-200 rounded w-1/3" />
+            <div className="h-10 bg-neutral-200 " />
+            <div className="h-10 bg-neutral-200  w-3/4" />
+            <div className="h-20 bg-neutral-200 " />
+            <div className="h-4 bg-neutral-200  w-1/3" />
         </div>
     </div>
 );
 
 const BlogSkeleton: React.FC = () => (
     <div className="space-y-4 animate-pulse">
-        <div className="aspect-[16/10] bg-neutral-200 rounded-xl" />
+        <div className="aspect-[16/10] bg-neutral-200 " />
         <div className="space-y-2">
-            <div className="h-4 bg-neutral-200 rounded w-1/3" />
-            <div className="h-5 bg-neutral-200 rounded w-full" />
-            <div className="h-4 bg-neutral-200 rounded w-2/3" />
+            <div className="h-4 bg-neutral-200  w-1/3" />
+            <div className="h-5 bg-neutral-200 " />
+            <div className="h-4 bg-neutral-200  w-2/3" />
         </div>
     </div>
 );
@@ -227,9 +227,9 @@ const BlogPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
             >
-                <div className="max-w-6xl mx-auto text-center">
+                <div className="max-w-7xl mx-auto text-center ">
                     <motion.p
-                        className="text-neutral-500 text-sm uppercase tracking-widest mb-4"
+                        className="text-neutral-500 text-sm font-light uppercase tracking-widest mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
@@ -237,7 +237,7 @@ const BlogPage: React.FC = () => {
                         Blog
                     </motion.p>
                     <motion.h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6"
+                        className="text-4xl md:text-5xl font-meidum text-neutral-900 mb-6"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
@@ -245,7 +245,7 @@ const BlogPage: React.FC = () => {
                         Thoughts & Insights
                     </motion.h1>
                     <motion.p
-                        className="text-lg text-neutral-600 font-light max-w-2xl mx-auto"
+                        className="text-md text-neutral-600 font-light max-w-2xl mx-auto"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -256,8 +256,8 @@ const BlogPage: React.FC = () => {
             </motion.section>
 
             {/* Latest Blog Section */}
-            <section className="px-6 pb-16">
-                <div className="max-w-6xl mx-auto">
+            <section className="px-6 pb-16 mt-4">
+                <div className="max-w-7xl mx-auto">
                     {isLoading ? <LatestBlogSkeleton /> : latestBlog ? <LatestBlogCard blog={latestBlog} /> : null}
                 </div>
             </section>
@@ -276,7 +276,7 @@ const BlogPage: React.FC = () => {
 
             {/* More Articles Section */}
             <section className="px-6 py-16">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     {/* Section Header */}
                     <motion.div
                         className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12"
@@ -284,7 +284,7 @@ const BlogPage: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                     >
-                        <h2 className="text-2xl font-bold text-neutral-900">More Articles</h2>
+                        <h2 className="text-2xl font-medium uppercase text-neutral-900">More Articles</h2>
 
                         {/* Category Filter */}
                         <div className="flex flex-wrap gap-2">
@@ -292,12 +292,11 @@ const BlogPage: React.FC = () => {
                                 <motion.button
                                     key={category.value}
                                     onClick={() => setActiveCategory(category.value)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                    className={`px-4 py-2 text-sm font-light transition-all cursor-pointer duration-300 ${
                                         activeCategory === category.value
                                             ? "bg-neutral-900 text-white"
                                             : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                                     }`}
-                                    whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     {category.label}

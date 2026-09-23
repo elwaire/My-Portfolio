@@ -41,7 +41,7 @@ const NowSection: React.FC<NowSectionProps> = ({ currentData }) => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="space-y-6"
         >
-            <h2 className="text-2xl font-semibold text-gray-900">Now</h2>
+            <h2 className="text-2xl font-medium uppercase text-gray-900">Now</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ActivityList title="What I'm doing" activities={workActivities} />
                 <ActivityList title="Learning & Growing" activities={learningActivities} />

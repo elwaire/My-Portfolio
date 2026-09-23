@@ -44,7 +44,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ head, projectId = "", onI
 
     return (
         <motion.header
-            className="w-full py-20 max-w-6xl"
+            className="w-full py-20 max-w-7xl"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
@@ -53,7 +53,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ head, projectId = "", onI
                 {head.isPinned ? (
                     <motion.div
                         variants={itemVariants}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-600 border border-amber-200/60 shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-light bg-amber-50 text-amber-600 border border-amber-200/60 "
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ head, projectId = "", onI
                         whileHover={{ scale: 1.05 }}
                         onClick={toggleLike}
                         disabled={isLiking}
-                        className={`flex justify-center items-center gap-2 w-[44px] h-[44px] rounded-full text-sm font-medium border transition-all duration-300 cursor-pointer select-none shadow-sm active:scale-95 ${
+                        className={`flex justify-center items-center gap-2 w-[44px] h-[44px] rounded-full text-sm font-medium border transition-all duration-300 cursor-pointer select-none active:scale-95 ${
                             isLiked
                                 ? "bg-rose-50/90 text-rose-600 border-rose-200 shadow-rose-100 hover:bg-rose-100/90"
                                 : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900"
@@ -94,34 +94,20 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ head, projectId = "", onI
                 )}
             </div>
 
-            <motion.h1 variants={itemVariants} className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+            <motion.h1 variants={itemVariants} className="text-3xl  font-medium mb-4 leading-tight">
                 {head.title}
             </motion.h1>
 
             {head.description && (
-                <motion.p variants={itemVariants} className="text-lg font-light text-neutral-600 mb-6 leading-relaxed">
+                <motion.p variants={itemVariants} className="text-md font-light text-neutral-600 mb-6 leading-relaxed">
                     {head.description}
                 </motion.p>
-            )}
-
-            {head.projectLink && (
-                <motion.a
-                    variants={itemVariants}
-                    href={head.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline mb-6 underline cursor-pointer hover:text-blue-800 inline-block"
-                >
-                    View Project
-                </motion.a>
             )}
 
             {head.thumbnail && (
                 <motion.div
                     variants={imageVariants}
-                    className={`w-full aspect-[2/1] mt-6 overflow-hidden rounded-2xl ${
-                        onImageClick ? "cursor-zoom-in group" : ""
-                    }`}
+                    className={`w-full aspect-[2/1] mt-6 overflow-hidden ${onImageClick ? "cursor-zoom-in group" : ""}`}
                     onClick={() => onImageClick?.(head.thumbnail)}
                 >
                     <img

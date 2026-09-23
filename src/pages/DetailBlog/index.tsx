@@ -111,11 +111,11 @@ const DetailBlogPage: React.FC = () => {
         <article className="min-h-screen pb-20">
             {/* Header */}
             <header className="max-w-2xl mx-auto px-6 pt-32 pb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mt-8 mb-4 leading-tight">
+                <h1 className="text-3xl md:text-4xl font-medium text-neutral-900 mt-8 mb-4 leading-tight">
                     {head.title}
                 </h1>
 
-                <div className="flex items-center gap-3 text-sm text-neutral-500">
+                <div className="flex items-center gap-3 text-sm font-light text-neutral-500">
                     <span className="capitalize">{head.category}</span>
                     <span>·</span>
                     <span>{head.readTime || 5} min read</span>
@@ -125,11 +125,7 @@ const DetailBlogPage: React.FC = () => {
             {/* Thumbnail */}
             {head.thumbnail && (
                 <div className="max-w-3xl mx-auto px-6 mb-12">
-                    <img
-                        src={head.thumbnail}
-                        alt={head.title}
-                        className="w-full aspect-[2/1] object-cover rounded-lg"
-                    />
+                    <img src={head.thumbnail} alt={head.title} className="w-full aspect-[2/1] object-cover" />
                 </div>
             )}
 

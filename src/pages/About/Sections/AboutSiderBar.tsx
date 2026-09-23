@@ -19,7 +19,7 @@ const AboutSidebar: React.FC<AboutSidebarProps> = ({ sections }) => (
                 border: "1px solid rgba(255, 255, 255, 0.2)",
             }}
         >
-            <h3 className="font-semibold text-gray-700 mb-4">About Me</h3>
+            <h3 className="font-medium uppercase mb-4">About Me</h3>
             <ul className="space-y-2 text-gray-600">
                 {sections.map((section) => (
                     <li key={section.id}>

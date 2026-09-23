@@ -18,11 +18,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ data }) => (
             {/* Profile Image */}
             <div className="w-full ">
                 <motion.div transition={{ type: "spring", stiffness: 300 }} className="relative">
-                    <img
-                        src={data.image}
-                        alt="Profile"
-                        className="w-full h-80 lg:h-[420px] object-cover rounded-2xl shadow-lg"
-                    />
+                    <img src={data.image} alt="Profile" className="w-full h-80 lg:h-[500px] object-cover " />
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
             </div>
@@ -30,11 +26,14 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ data }) => (
             {/* Profile Info */}
             <div className="w-full space-y-6">
                 <div>
-                    <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">{data.name}</h1>
-                    <p className="text-xl text-gray-600 mb-4">{data.title}</p>
-                    <div className="flex flex-wrap gap-2">
+                    <h1 className="text-3xl uppercase text-gray-900 mb-2">{data.name}</h1>
+                    <p className="text-md font-light text-gray-600 mb-4">{data.title}</p>
+                    <div className="flex flex-wrap gap-2 mt-2">
                         {data.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1 text-sm bg-[#e0e0e0] text-gray-700 rounded-full">
+                            <span
+                                key={skill}
+                                className="px-3 py-1 font-light text-sm bg-gray-100 text-gray-600 rounded-full"
+                            >
                                 {skill}
                             </span>
                         ))}

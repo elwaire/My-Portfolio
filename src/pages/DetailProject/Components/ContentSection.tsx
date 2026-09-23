@@ -35,9 +35,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index, onImage
         const imageAlt = alt || section.title || "Project image";
         return (
             <motion.div
-                className={`w-full overflow-hidden rounded-xl shadow-md ${
-                    onImageClick ? "cursor-zoom-in group" : ""
-                }`}
+                className={`w-full overflow-hidden shadow-md ${onImageClick ? "cursor-zoom-in group" : ""}`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.25 }}
@@ -69,9 +67,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index, onImage
                         return (
                             <motion.div
                                 key={imgIndex}
-                                className={`overflow-hidden rounded-xl shadow-md ${
-                                    onImageClick ? "cursor-zoom-in group" : ""
-                                }`}
+                                className={`overflow-hidden shadow-md ${onImageClick ? "cursor-zoom-in group" : ""}`}
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true, amount: 0.25 }}
@@ -96,9 +92,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, index, onImage
         return (
             <div className="w-full space-y-4">
                 <motion.div
-                    className={`overflow-hidden rounded-xl shadow-md ${
-                        onImageClick ? "cursor-zoom-in group" : ""
-                    }`}
+                    className={`overflow-hidden rounded-xl shadow-md ${onImageClick ? "cursor-zoom-in group" : ""}`}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.25 }}

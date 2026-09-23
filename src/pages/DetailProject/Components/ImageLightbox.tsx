@@ -95,7 +95,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                         onClick={(e) => e.stopPropagation()}
                     >
                         {total > 1 ? (
-                            <span className="px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide bg-white/10 text-white/90 border border-white/10 backdrop-blur-sm shadow-sm">
+                            <span className="px-3.5 py-1.5 rounded-full text-xs font-light tracking-wide bg-white/10 text-white/90 border border-white/10 backdrop-blur-sm shadow-sm">
                                 {currentIndex + 1} / {total}
                             </span>
                         ) : (
@@ -108,7 +108,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                             className="p-2.5 rounded-full bg-white/10 text-white/90 hover:text-white hover:bg-white/20 border border-white/10 transition-all duration-200 cursor-pointer shadow-lg active:scale-95"
                             aria-label="Close"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-5 h-5" strokeWidth={1.5} />
                         </button>
                     </div>
 
@@ -120,7 +120,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                             className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 text-white hover:bg-white/25 border border-white/10 transition-all duration-200 cursor-pointer shadow-xl active:scale-90 hover:scale-105"
                             aria-label="Previous image"
                         >
-                            <ChevronLeft className="w-6 h-6" />
+                            <ChevronLeft className="w-6 h-6" strokeWidth={1.5} />
                         </button>
                     )}
 
@@ -132,7 +132,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                             className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 text-white hover:bg-white/25 border border-white/10 transition-all duration-200 cursor-pointer shadow-xl active:scale-90 hover:scale-105"
                             aria-label="Next image"
                         >
-                            <ChevronRight className="w-6 h-6" />
+                            <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
                         </button>
                     )}
 
@@ -146,7 +146,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                                 key={currentImage.url}
                                 src={currentImage.url}
                                 alt={currentImage.alt || "Zoomed project image"}
-                                className="max-w-[88vw] max-h-[68vh] md:max-h-[72vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
+                                className="max-w-[88vw] max-h-[68vh] md:max-h-[72vh] w-auto h-auto object-contain  shadow-2xl"
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.96 }}
@@ -164,7 +164,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                         >
                             <div
                                 ref={thumbnailsContainerRef}
-                                className="max-w-[92vw] overflow-x-auto flex items-center gap-2 md:gap-3 p-2 rounded-2xl bg-white/[0.08] backdrop-blur-lg border border-white/10 shadow-2xl scrollbar-none"
+                                className="max-w-[92vw] overflow-x-auto flex items-center gap-2 md:gap-3 p-2  bg-white/[0.08] backdrop-blur-lg border border-white/10 shadow-2xl scrollbar-none"
                                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                             >
                                 {images.map((img, idx) => {
@@ -175,7 +175,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ isOpen, images, currentIn
                                             ref={isActive ? activeThumbRef : null}
                                             type="button"
                                             onClick={() => onNavigate(idx)}
-                                            className={`relative shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 border-2 ${
+                                            className={`relative shrink-0 w-12 h-12 md:w-16 md:h-16  overflow-hidden cursor-pointer transition-all duration-200 border-2 ${
                                                 isActive
                                                     ? "border-white ring-2 ring-white/60 scale-105 opacity-100 shadow-md"
                                                     : "border-transparent opacity-40 hover:opacity-80 hover:scale-100"

@@ -27,48 +27,51 @@ const CertificateCard = ({ cert, index }: { cert: Certificate; index: number }) 
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="flex-shrink-0 md:snap-center md:w-[calc(33.333%-16px)] w-full rounded-2xl overflow-hidden cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-300"
+            className="w-full"
             onClick={handleCardClick}
         >
-            <div className="relative overflow-hidden">
-                {/* Loading placeholder */}
-                {!imageLoaded && !imageError && (
-                    <div className="w-full h-56 bg-gray-200 animate-pulse flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
-                    </div>
-                )}
+            <div className="relative group cursor-pointer">
+                <div className="h-[240px] relative border border-gray-100 overflow-hidden">
+                    {/* Loading placeholder */}
+                    {!imageLoaded && !imageError && (
+                        <div className="w-full h-[240px] bg-gray-200 animate-pulse flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+                        </div>
+                    )}
 
-                {/* Error fallback */}
-                {imageError ? (
-                    <div className="w-full h-56 bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-400 text-4xl">📜</span>
-                    </div>
-                ) : (
-                    <motion.img
-                        src={cert.image}
-                        alt={cert.title}
-                        className={`w-full h-56 object-cover transition-opacity duration-300 ${
-                            imageLoaded ? "opacity-100" : "opacity-0"
-                        }`}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.4 }}
-                        onLoad={handleImageLoad}
-                        onError={handleImageError}
-                        loading="lazy"
-                    />
-                )}
+                    {/* Error fallback */}
+                    {imageError ? (
+                        <div className="w-full h-[240px] bg-gray-200 flex items-center justify-center">
+                            <span className="text-gray-400 text-4xl">📜</span>
+                        </div>
+                    ) : (
+                        <motion.img
+                            src={cert.image}
+                            alt={cert.title}
+                            className={`w-full h-[240px] object-cover transition-opacity duration-100 ${
+                                imageLoaded ? "opacity-100" : "opacity-0"
+                            }`}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.4 }}
+                            onLoad={handleImageLoad}
+                            onError={handleImageError}
+                            loading="lazy"
+                        />
+                    )}
+                    {cert.link && cert.link !== "#" && (
+                        <span className="opacity-0 group-hover:opacity-100 duration-150 absolute bottom-0 right-0 text-sm w-full h-full bg-black/80 flex underline justify-center items-center text-white">
+                            View Certificate
+                        </span>
+                    )}
+                </div>
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                    <div>
-                        <h3 className="font-semibold text-white text-lg">{cert.title}</h3>
-                        <p className="text-sm text-gray-200">{cert.issuer}</p>
-                        <p className="text-xs text-gray-300">{cert.date}</p>
-                        {cert.link && cert.link !== "#" && (
-                            <span className="inline-block mt-2 text-sm text-blue-300 hover:underline">
-                                View Certificate →
-                            </span>
-                        )}
+                <div className="flex flex-col items-start gap-1 py-4">
+                    <h3 className="font-semibold text-black line-clamp-1 text-lg">{cert.title}</h3>
+                    <div className="flex items-center gap-1 font-light">
+                        <p className="text-sm text-gray-500 line-clamp-1">{cert.issuer}</p>
+                        <span className="text-sm text-gray-500 line-clamp-1">•</span>
+                        <p className="text-sm text-gray-500 line-clamp-1">{cert.date}</p>
                     </div>
                 </div>
             </div>

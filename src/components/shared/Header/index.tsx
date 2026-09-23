@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import NavLinks from "./Navlinks";
 
@@ -10,12 +10,12 @@ const SOCIAL_LINKS = [
     {
         label: "Behance",
         href: "https://www.behance.net/nevwyn",
-        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_qqzi1BPzHdE3Fbuz4a-qXyqIK7xsmr40lQ&s",
+        icon: "https://cdn-icons-png.flaticon.com/512/51/51916.png",
     },
     {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/kien-vo-ngoc-min-2b3597275/",
-        icon: "https://i.pinimg.com/736x/ce/1c/0d/ce1c0d86e2ce3bc78f268f38080d381b.jpg",
+        icon: "https://img.icons8.com/win8/1200/linkedin.jpg",
     },
     {
         label: "TikTok",
@@ -33,9 +33,9 @@ const SocialIcons: React.FC = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="rounded-lg overflow-hidden"
+                className=" overflow-hidden rounded-md opacity-50 hover:opacity-100 transition-opacity duration-300"
             >
-                <img src={icon} alt={label} width={32} />
+                <img src={icon} alt={label} width={28} />
             </a>
         ))}
     </div>
@@ -43,12 +43,28 @@ const SocialIcons: React.FC = () => (
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
-        <header className="border-b  bg-[#faf7ef]  border-[#e7dfcb]   fixed z-50 w-full">
-            <div className="max-w-6xl mx-auto px-4 py-4 lg:w-full relative flex justify-between  lg:justify-center items-center">
+        <header
+            className={`fixed z-50 w-full transition-all duration-300 border-gray-100 ${
+                isScrolled ? "bg-white border-b  shadow-xs" : "bg-transparent"
+            }`}
+        >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 lg:w-full relative flex justify-between lg:justify-center items-center">
                 {/* Logo */}
-                <Logo className="lg:absolute lg:left-4" />
+                <Logo />
 
                 {/* Social Icons (Desktop) — right side */}
                 <div className="hidden lg:flex lg:absolute lg:right-4">
@@ -61,7 +77,7 @@ const Header: React.FC = () => {
                 </button>
 
                 {/* Nav Desktop */}
-                <nav className="hidden lg:flex gap-4 lg:gap-2">
+                <nav className="hidden lg:flex gap-4 lg:gap-2 lg:absolute lg:left-0">
                     <NavLinks />
                 </nav>
             </div>
@@ -74,21 +90,25 @@ const Header: React.FC = () => {
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="fixed inset-0 bg-background z-50 flex flex-col"
+                        className="fixed inset-0 bg-white z-50 flex flex-col"
                     >
                         <div className="flex justify-between items-center p-4 border-b border-stroke-default">
                             <Logo />
-                            <button onClick={() => setIsOpen(false)} aria-label="Close menu">
-                                <X />
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                aria-label="Close menu"
+                                className="cursor-pointer duration-150 hover:bg-gray-100 p-2"
+                            >
+                                <X strokeWidth={1.5} />
                             </button>
                         </div>
                         <div className="flex-1 p-4 flex flex-col gap-4">
-                            <NavLinks onClick={() => setIsOpen(false)} />
+                            <NavLinks onClick={() => setIsOpen(false)} mobile />
                         </div>
 
                         {/* Social Icons (Mobile Drawer) */}
                         <div className="p-4 border-t border-stroke-default">
-                            <p className="text-xs text-gray-400 mb-3">Find me on</p>
+                            <p className="text-xs uppercase text-gray-400 mb-3">Find me on</p>
                             <SocialIcons />
                         </div>
                     </motion.aside>

@@ -5,57 +5,6 @@ import ProjectCard from "../../../../components/customs/ProjectCard";
 import SkeletonCard from "../../../../components/customs/SkeletonCard";
 import { useProjects } from "../../../../hooks/useProjects";
 
-// Màu gradient cho các category — mở rộng thêm khi cần
-const CATEGORY_GRADIENTS: Record<string, { gradient: string; activeText: string; badge: string }> = {
-    uiux: {
-        gradient: "from-blue-500 to-indigo-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    graphic: {
-        gradient: "from-emerald-500 to-teal-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    art: {
-        gradient: "from-purple-500 to-violet-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    branding: {
-        gradient: "from-orange-500 to-amber-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    motion: {
-        gradient: "from-pink-500 to-rose-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    illustration: {
-        gradient: "from-yellow-500 to-orange-500",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    web: {
-        gradient: "from-cyan-500 to-sky-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-    mobile: {
-        gradient: "from-fuchsia-500 to-purple-600",
-        activeText: "text-white",
-        badge: "bg-white/20 text-white",
-    },
-};
-
-// Fallback gradient cho category bất kỳ chưa được định nghĩa
-const DEFAULT_GRADIENT = {
-    gradient: "from-gray-500 to-gray-700",
-    activeText: "text-white",
-    badge: "bg-white/20 text-white",
-};
-
 // Label hiển thị cho các category phổ biến
 const CATEGORY_LABELS: Record<string, string> = {
     uiux: "UI/UX",
@@ -68,7 +17,6 @@ const CATEGORY_LABELS: Record<string, string> = {
     mobile: "Mobile",
 };
 
-const getCategoryStyle = (cat: string) => CATEGORY_GRADIENTS[cat] ?? DEFAULT_GRADIENT;
 const getCategoryLabel = (cat: string) => CATEGORY_LABELS[cat] ?? cat.charAt(0).toUpperCase() + cat.slice(1);
 
 const ProjectsSection = memo(() => {
@@ -118,14 +66,14 @@ const ProjectsSection = memo(() => {
 
     return (
         <section className="w-full py-20">
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="max-w-7xl mx-auto px-4">
                 {/* Title */}
                 <motion.h2
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold text-center mb-12"
+                    className="text-3xl uppercase text-start mb-12"
                 >
                     My Projects
                 </motion.h2>
@@ -134,13 +82,13 @@ const ProjectsSection = memo(() => {
                 {loading && (
                     <>
                         {/* Skeleton tabs */}
-                        <div className="flex flex-wrap justify-center gap-3 mb-10">
+                        <div className="flex flex-wrap justify-start gap-3 mb-10">
                             {Array.from({ length: 3 }, (_, i) => (
-                                <div key={i} className="h-11 w-28 rounded-2xl bg-gray-200 animate-pulse" />
+                                <div key={i} className="h-11 w-28  bg-gray-200 animate-pulse" />
                             ))}
                         </div>
                         {/* Skeleton cards */}
-                        <div className="grid md:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-2 gap-8">
                             {Array.from({ length: 6 }, (_, index) => (
                                 <SkeletonCard key={index} index={index} />
                             ))}
@@ -167,14 +115,13 @@ const ProjectsSection = memo(() => {
                         {/* Category Filter Tabs */}
                         {categories.length > 0 && (
                             <motion.div
-                                className="flex flex-wrap justify-center gap-3 mb-10"
+                                className="flex flex-wrap justify-start font-light gap-3 mb-10"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: "easeOut" }}
                                 viewport={{ once: true }}
                             >
                                 {categories.map((cat, i) => {
-                                    const style = getCategoryStyle(cat);
                                     const isActive = cat === resolvedActive;
                                     return (
                                         <motion.button
@@ -183,31 +130,16 @@ const ProjectsSection = memo(() => {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: i * 0.06, duration: 0.3 }}
-                                            className={`relative group pl-4 pr-2 py-2 cursor-pointer rounded-full font-medium text-xs transition-all duration-300 transform overflow-hidden ${
+                                            className={`relative group px-4 py-2 cursor-pointer text-sm transition-all duration-300 transform overflow-hidden ${
                                                 isActive
-                                                    ? `bg-gradient-to-r bg-[#101010] text-white shadow-lg scale-105`
-                                                    : "bg-white text-gray-600 hover:shadow-md hover:scale-102 shadow-sm border border-gray-200 hover:border-gray-300"
+                                                    ? `bg-gradient-to-r bg-[#000000] text-white`
+                                                    : "bg-white text-gray-600  border border-gray-200 hover:bg-black hover:text-white hover:border-black"
                                             }`}
-                                            whileHover={{ scale: isActive ? 1.05 : 1.03 }}
                                             whileTap={{ scale: 0.97 }}
                                         >
-                                            {/* Glow effect khi active */}
-                                            {isActive && (
-                                                <div
-                                                    className={`absolute inset-0 bg-gradient-to-r ${style.gradient} rounded-2xl blur-xl opacity-25 animate-pulse`}
-                                                />
-                                            )}
                                             <span className="relative z-10 flex items-center gap-2">
                                                 {getCategoryLabel(cat)}
-                                                <span
-                                                    className={`w-[20px] h-[20px] text-xs font-medium rounded-full transition-all duration-300 flex items-center justify-center ${
-                                                        isActive
-                                                            ? style.badge
-                                                            : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
-                                                    }`}
-                                                >
-                                                    {countByCategory[cat] ?? 0}
-                                                </span>
+                                                <span>({countByCategory[cat] ?? 0})</span>
                                             </span>
                                         </motion.button>
                                     );
@@ -220,7 +152,7 @@ const ProjectsSection = memo(() => {
                             {filteredProjects.length > 0 ? (
                                 <motion.div
                                     key={resolvedActive}
-                                    className="grid md:grid-cols-3 gap-8"
+                                    className="grid md:grid-cols-2 gap-8"
                                     initial={{ opacity: 0, y: 16 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -16 }}
@@ -233,14 +165,16 @@ const ProjectsSection = memo(() => {
                             ) : (
                                 <motion.div
                                     key="empty"
-                                    className="text-center py-12"
+                                    className="text-center py-24"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.4 }}
                                 >
-                                    <div className="text-6xl mb-4">🎨</div>
-                                    <p className="text-gray-500">No projects available in this category yet.</p>
+                                    <div className="text-5xl mb-4">🎨</div>
+                                    <p className="text-gray-500 text-sm font-light">
+                                        No projects available in this category yet.
+                                    </p>
                                 </motion.div>
                             )}
                         </AnimatePresence>

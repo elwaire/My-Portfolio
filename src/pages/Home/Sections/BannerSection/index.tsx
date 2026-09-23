@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useBanner } from "../../../../hooks/useBanner";
 import NoData from "./components/NoData";
 import Loading from "./components/Loading";
+import Button from "../../../../components/customs/Button";
 
 const BannerSection = memo(() => {
     const { bannerSettings, loading } = useBanner();
@@ -30,102 +31,69 @@ const BannerSection = memo(() => {
     }
 
     return (
-        <section className="min-h-screen w-full flex items-center justify-center px-4 sm:px-6 py-20">
-            <div className="max-w-6xl mx-auto text-center w-full">
-                {/* Main Title */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-12 sm:mb-16 flex justify-center"
-                >
-                    <h1 className="text-4xl sm:text-5xl lg:max-w-[720px] md:text-6xl font-semibold text-gray-900 leading-tight mb-4 lg:mt-12">
-                        {bannerSettings.title}
-                    </h1>
-                </motion.div>
+        <section className="min-h-screen md:min-h-[110vh] lg:min-h-[140vh] w-full flex flex-col justify-between items-center px-4 sm:px-6 lg:px-8 pb-8 pt-24 sm:pt-28 md:pt-32">
+            {/* Header: Title & Description */}
+            <div className="w-full max-w-7xl mx-auto text-start pt-4 sm:pt-8 mb-8 sm:mb-12">
+                <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6 md:gap-8">
+                    {/* Main Title */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="flex justify-start w-full"
+                    >
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-snug sm:leading-snug lg:leading-[70px] max-w-full md:max-w-xl">
+                            {bannerSettings.title}
+                        </h1>
+                    </motion.div>
 
-                {/* Artwork Cards Stack */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative mb-12 sm:mb-16 flex items-center justify-center w-full overflow-hidden md:overflow-visible"
-                    style={{
-                        height: "300px",
-                        minWidth: "320px",
-                    }}
-                >
-                    {artworkData.map((artwork, index) => {
-                        const centerIndex = Math.floor(artworkData.length / 2);
-                        const offsetFromCenter = index - centerIndex;
+                    {/* Description */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="w-full md:w-auto"
+                    >
+                        <p className="text-sm sm:text-base font-light text-start md:text-end leading-relaxed max-w-full md:max-w-sm text-gray-700">
+                            {bannerSettings.description}
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
 
-                        // Desktop spacing
-                        const desktopX = offsetFromCenter * 160;
-                        // Mobile spacing
-                        const mobileX = offsetFromCenter * 80;
-
-                        return (
-                            <motion.div
-                                key={artwork.id}
-                                initial={{
-                                    opacity: 0,
-                                    y: 50,
-                                    rotate: 0,
-                                    scale: 0.8,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                    rotate: artwork.rotation,
-                                    x: typeof window !== "undefined" && window.innerWidth >= 768 ? desktopX : mobileX,
-                                    scale: 1,
-                                }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 0.4 + index * 0.1,
-                                    type: "spring",
-                                    stiffness: 100,
-                                }}
-                                whileHover={{
-                                    scale: 1.1,
-                                    rotate: 0,
-                                    zIndex: 10,
-                                    y: -15,
-                                    transition: { duration: 0.2 },
-                                }}
-                                className="absolute cursor-pointer rounded-2xl shadow-xl"
-                                style={{
-                                    zIndex: artworkData.length - Math.abs(offsetFromCenter),
-                                    width:
-                                        typeof window !== "undefined" && window.innerWidth >= 768 ? "192px" : "120px",
-                                    height:
-                                        typeof window !== "undefined" && window.innerWidth >= 768 ? "192px" : "120px",
-                                }}
-                            >
-                                <div className="w-full h-full rounded-2xl flex flex-col justify-between relative overflow-hidden">
-                                    <img
+            {/* Bottom section: Artworks & CTA */}
+            <div className="flex flex-col gap-8 sm:gap-12 md:gap-16 w-full">
+                {/* Artwork Cards - Horizontal scroll on mobile, flex grid on tablet/desktop */}
+                <div className="w-full overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+                    <div className="flex gap-2.5 sm:gap-3 max-w-7xl mx-auto min-w-max md:min-w-full pb-2 sm:pb-0">
+                        {artworkData.map((artwork, index) => {
+                            return (
+                                <motion.div
+                                    key={artwork.id}
+                                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{
+                                        duration: 0.7,
+                                        delay: 0.2 + index * 0.1,
+                                        ease: [0.25, 0.1, 0.25, 1],
+                                    }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-40 sm:w-48 md:w-auto md:flex-1 flex-shrink-0 group cursor-pointer flex flex-col justify-between relative overflow-hidden rounded-xs shadow-sm hover:shadow-xl transition-shadow duration-300"
+                                >
+                                    <motion.img
                                         src={artwork.image}
                                         alt={`Artwork ${index + 1}`}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover aspect-[3/4]"
                                         loading="lazy"
+                                        whileHover={{ scale: 1.06 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
                                     />
-                                </div>
-                            </motion.div>
-                        );
-                    })}
-                </motion.div>
-
-                {/* Description */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1 }}
-                    className="mb-8 sm:mb-12"
-                >
-                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto px-4">
-                        {bannerSettings.description}
-                    </p>
-                </motion.div>
+                                    <div className="w-full h-full absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 pointer-events-none" />
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+                </div>
 
                 {/* CTA Button */}
                 <motion.div
@@ -134,22 +102,12 @@ const BannerSection = memo(() => {
                     transition={{ duration: 0.6, delay: 1.2 }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                    {/* Contact Button */}
-                    <a
-                        href="mailto:minull1810@gmail.com"
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white rounded-full text-sm font-medium transition-colors shadow-lg inline-block text-center no-underline hover:bg-gray-700"
-                    >
-                        Contact Me
-                    </a>
-
-                    {/* Download CV Button */}
                     <a
                         href="https://drive.google.com/drive/folders/1RUchOcrtVbB5r7DjFqqHt1f0puRd65xn?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 border border-gray-100 hover:border-transparent rounded-full text-sm font-medium hover:bg-gray-900 hover:text-white transition-colors shadow-lg inline-block text-center no-underline"
                     >
-                        Download CV
+                        <Button variant="outline">Download CV</Button>
                     </a>
                 </motion.div>
             </div>

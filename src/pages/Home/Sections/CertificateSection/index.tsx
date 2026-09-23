@@ -10,37 +10,24 @@ const CertificateSection = memo(() => {
 
     return (
         <section className="py-16 relative w-full" id="certificates">
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
                 {/* Heading */}
                 <motion.div
-                    className="text-center mb-16"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true }}
+                    className="text-3xl uppercase text-start mb-12"
                 >
-                    <h2 className="text-3xl font-bold">Certificates</h2>
-                    <p className="text-gray-600 mt-2">Certificates obtained during my studies and work experience.</p>
+                    Certificates
                 </motion.div>
 
-                {/* Mobile (stacked list) */}
-                <div className="md:hidden flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-4">
                     {loading
                         ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} index={i} />)
                         : certificates
                               .slice(0, 6)
                               .map((cert, index) => <CertificateCard key={cert.id} cert={cert} index={index} />)}
-                </div>
-
-                {/* Desktop (horizontal carousel) */}
-                <div className="hidden md:block relative">
-                    <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 scrollbar-hide">
-                        {loading
-                            ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} index={i} />)
-                            : certificates
-                                  .slice(0, 6)
-                                  .map((cert, index) => <CertificateCard key={cert.id} cert={cert} index={index} />)}
-                    </div>
                 </div>
 
                 {/* Empty State */}

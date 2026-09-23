@@ -14,8 +14,8 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ timeline }) => (
         transition={{ delay: 0.6, duration: 0.6 }}
         className="space-y-6"
     >
-        <h2 className="text-2xl font-semibold text-gray-900">Timeline</h2>
-        <div className="space-y-8">
+        <h2 className="text-2xl uppercase text-gray-900">Timeline</h2>
+        <div className="space-y-8 font-light">
             {timeline.map((item, index) => (
                 <motion.div
                     key={index}
@@ -25,8 +25,8 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ timeline }) => (
                     className="flex gap-6"
                 >
                     <div className="flex flex-col items-center">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        {index !== timeline.length - 1 && <div className="w-px h-16 bg-gray-200 mt-2"></div>}
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                        {index !== timeline.length - 1 && <div className="w-px h-16 bg-gray-200"></div>}
                     </div>
                     <div className="flex-1 pb-8">
                         <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-2">

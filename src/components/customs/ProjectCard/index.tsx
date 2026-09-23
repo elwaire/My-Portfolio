@@ -3,6 +3,7 @@ import type { Project } from "../../../types/project";
 import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import PATHS from "../../../constants/paths";
+import { ArrowUpRight } from "lucide-react";
 
 const cardVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
@@ -21,10 +22,13 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={`flex flex-col rounded-2xl relative border overflow-hidden shadow-md cursor-pointer transition-all duration-300 border-blue-200 bg-white hover:shadow-blue-200/60`}
+            className={`flex flex-col  relative overflow-hidden  cursor-pointer transition-all duration-300 bg-white `}
         >
             {/* Wrapper cho ảnh */}
-            <Link className="relative overflow-hidden" to={`${PATHS.PROJECT}/${project.id}`}>
+            <Link
+                className="relative group overflow-hidden border border-gray-100"
+                to={`${PATHS.PROJECT}/${project.id}`}
+            >
                 <motion.img
                     src={project.image}
                     alt={project.title}
@@ -37,14 +41,16 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 >
                     {project.category}
                 </span>
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/70 to-transparent" />
+                <div className="w-[44px] h-[44px] flex justify-center items-center rounded-full bg-white absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ">
+                    <ArrowUpRight />
+                </div>
             </Link>
 
-            <div className="flex flex-col gap-2 p-4">
+            <div className="flex flex-col gap-2 py-4">
                 <Link to={`${PATHS.PROJECT}/${project.id}`}>
-                    <h3 className="text-lg font-semibold hover:underline">{project.title}</h3>
+                    <h3 className="text-lg hover:underline">{project.title}</h3>
                 </Link>
-                <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
+                <p className="text-gray-400 font-light line-clamp-2">{project.description}</p>
             </div>
         </motion.div>
     );
