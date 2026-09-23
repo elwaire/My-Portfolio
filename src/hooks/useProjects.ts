@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { projectService } from "../services/projectService";
 import type { Project } from "../types/project";
 
-type Category = "uiux" | "graphic" | "art";
+type Category = string;
 
 interface UseProjectsReturn {
     projects: Project[];

@@ -23,7 +23,7 @@ export const useProjectFilter = (projects: Project[]) => {
         } as Record<Category, number>;
 
         projects.forEach((project) => {
-            counts[project.category]++;
+            counts[project.category as Category]++;
         });
 
         return counts;

@@ -13,16 +13,7 @@ const cardVariants: Variants = {
     }),
 };
 
-// Map style theo category
-const categoryStyles: Record<Project["category"], string> = {
-    uiux: "border-blue-200 bg-white hover:shadow-blue-200/60",
-    graphic: "border-pink-200 bg-white hover:shadow-pink-200/60",
-    art: "border-purple-200 bg-white hover:shadow-purple-200/60",
-};
-
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-    const styleClass = categoryStyles[project.category];
-
     return (
         <motion.div
             custom={index}
@@ -30,7 +21,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={`flex flex-col rounded-2xl relative border overflow-hidden shadow-md cursor-pointer transition-all duration-300 ${styleClass}`}
+            className={`flex flex-col rounded-2xl relative border overflow-hidden shadow-md cursor-pointer transition-all duration-300 border-blue-200 bg-white hover:shadow-blue-200/60`}
         >
             {/* Wrapper cho ảnh */}
             <Link className="relative overflow-hidden" to={`${PATHS.PROJECT}/${project.id}`}>
@@ -41,23 +32,6 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                 />
-                {/* {project.isPinned && (
-                    <span
-                        className="absolute top-4 left-4 text-xs py-1.5 px-3 rounded-full bg-amber-500 text-white flex items-center gap-1 shadow-md z-10"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="10"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="rotate-45"
-                        >
-                            <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
-                        </svg>
-                        Featured
-                    </span>
-                )} */}
                 <span
                     className={`absolute top-4 uppercase right-4 text-xs py-2 px-4 rounded-full bg-black/50 text-white`}
                 >

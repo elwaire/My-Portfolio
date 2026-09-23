@@ -5,7 +5,7 @@ export interface Project {
     title: string;
     description: string;
     image: string;
-    category: "uiux" | "graphic" | "art";
+    category: string;
     isPinned?: boolean;
 }
 
@@ -22,7 +22,7 @@ export interface ProjectHead {
     title: string;
     description: string;
     thumbnail: string;
-    category: "uiux" | "graphic" | "art";
+    category: string;
     projectLink?: string;
     isPinned?: boolean;
     likes?: number;

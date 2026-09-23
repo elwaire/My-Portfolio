@@ -12,7 +12,7 @@ class ProjectService {
     /**
      * Lấy danh sách projects theo category với caching
      */
-    async getProjectsByCategory(category?: "uiux" | "graphic" | "art"): Promise<Project[]> {
+    async getProjectsByCategory(category?: string): Promise<Project[]> {
         const cacheKey = category || "all";
 
         // Kiểm tra cache trước
