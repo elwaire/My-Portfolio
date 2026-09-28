@@ -48,7 +48,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
             <div className="flex flex-col gap-2 py-4">
                 <Link to={`${PATHS.PROJECT}/${project.id}`}>
-                    <h3 className="text-lg hover:underline">{project.title}</h3>
+                    <h3 className="text-lg hover:underline line-clamp-1">{project.title}</h3>
                 </Link>
                 <p className="text-gray-400 font-light line-clamp-2">{project.description}</p>
             </div>

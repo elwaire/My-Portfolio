@@ -103,11 +103,11 @@ const BannerSection = memo(() => {
                     className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
                     <a
-                        href="https://drive.google.com/drive/folders/1RUchOcrtVbB5r7DjFqqHt1f0puRd65xn?usp=sharing"
+                        href="https://drive.google.com/file/d/1odG-A-k-L0Rltu2qFKYJ4YhuAFHkJ51b/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button variant="outline">Download CV</Button>
+                        <Button variant="outline">My Resume</Button>
                     </a>
                 </motion.div>
             </div>

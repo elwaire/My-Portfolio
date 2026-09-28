@@ -7,6 +7,7 @@ import ImageLightbox, { type LightboxImage } from "./Components/ImageLightbox";
 import ProjectDetailSkeleton from "./Components/ProjectDetailSkeleton";
 import ProjectHeader from "./Components/ProjectHeader";
 import ProjectIntroduction from "./Components/ProjectIntroduction";
+import SuggestedProjects from "./Components/SuggestedProjects";
 
 const DetailProjectPage: React.FC = () => {
     const { idProject } = useParams<{ idProject: string }>();
@@ -85,7 +86,6 @@ const DetailProjectPage: React.FC = () => {
                     ))}
                 </main>
             </div>
-
             {/* Lightbox Modal */}
             <ImageLightbox
                 isOpen={selectedImageIndex !== null}
@@ -94,6 +94,9 @@ const DetailProjectPage: React.FC = () => {
                 onClose={() => setSelectedImageIndex(null)}
                 onNavigate={(index) => setSelectedImageIndex(index)}
             />
+
+            {/* Suggest Project  */}
+            <SuggestedProjects currentProjectId={idProject} category={projectData.head?.category} />
         </div>
     );
 };

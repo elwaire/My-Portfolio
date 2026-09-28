@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
     {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/kien-vo-ngoc-min-2b3597275/",
-        icon: "https://img.icons8.com/win8/1200/linkedin.jpg",
+        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaTs3gdf-1JZM5SFJ2cAvOi0EmiK95md75xEWHFV2S6g&s=10",
     },
     {
         label: "TikTok",
@@ -33,7 +33,7 @@ const SocialIcons: React.FC = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className=" overflow-hidden rounded-md opacity-50 hover:opacity-100 transition-opacity duration-300"
+                className=" overflow-hidden "
             >
                 <img src={icon} alt={label} width={28} />
             </a>
