@@ -1,15 +1,19 @@
-export const dataNavLink = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Projects", path: "/project" },
-    { label: "Blogs", path: "/blog" },
-];
-
 const PATHS = {
-    HOME: dataNavLink[0].path,
-    ABOUT_US: dataNavLink[1].path,
-    PROJECT: dataNavLink[2].path,
-    BLOG: dataNavLink[3].path,
+    HOME: "/",
+    ABOUT_US: "/about",
+    PROJECT: "/project",
+    BLOG: "/blog",
+    VIDEO: "/videos",
+    DESIGN: "/design",
 };
+
+export const dataNavLink = [
+    { label: "Home", path: PATHS.HOME },
+    { label: "About", path: PATHS.ABOUT_US },
+    { label: "Projects", path: PATHS.PROJECT },
+    // { label: "Blogs", path: PATHS.BLOG },
+    { label: "Videos", path: PATHS.VIDEO },
+    { label: "Art & Design", path: PATHS.DESIGN },
+];
 
 export default PATHS;
